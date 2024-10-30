@@ -31,6 +31,10 @@
             <label for="password"></label>
             <input type="password" name="password" id="password" class="bg-blue-200 w-1/8 p-2 text-base border text-xl 
             rounded-xl border-white border-4 focus:border-white focus:outline-none mt-3" placeholder="Password">
+            <label for="showPassword">
+                <input type="checkbox" id="showPassword">
+                Tampilkan Kata Sandi
+            </label>
         </div>
         <button type="submit" class="bg-white text-blue-500 font-bold py-2 px-4 rounded mt-3">
             Login
@@ -39,8 +43,17 @@
     </div>
     <div class="bg-blue-500 font-bold text-center text-2xl p-5 border-t-4">@Copyright UKDC IF23</div>
 
-    <div>
-        <label for=""></label>
-    </div>
+    <script>
+        const showPassword = document.getElementById('showPassword');
+        const passwordInput = document.getElementById('password');
+
+        showPassword.addEventListener("input", (e) => {
+            if(e.target.checked) {
+                passwordInput.setAttribute("type", "text");
+            } else {
+                passwordInput.setAttribute("type", "password");
+            }
+        })
+    </script>
 </body>
 </html>
