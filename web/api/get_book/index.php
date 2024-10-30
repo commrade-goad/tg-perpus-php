@@ -6,15 +6,28 @@ include "../../../private/book.php";
 include "../../../private/tag.php";
 
 $books = array();
+$sort = "ASC";
+$from = 0;
+$range = 50;
 check_and_create($db);
 
-// SELECT b.book_id, b.title, b.author, b.desc, b.year, b.cover
-// FROM book b
-// JOIN book_tags bt ON b.book_id = bt.book_id
-// JOIN all_tags at ON bt.tags_id = at.tags_id
-// WHERE at.tags_id = {} ORDER BY b.title {} limit {} offset {}
+if (isset($_GET["sort"])) {
+    if (strtoupper($_GET["sort"]) == "DESC") {
+        $sort = "DESC";
+    }
+}
 
-$statement = "select * from book";
+if (isset($_GET["from"])) {
+    $tmp = $_GET["from"];
+    $from = (int)$tmp;
+}
+
+if (isset($_GET["range"])) {
+    $tmp = $_GET["range"];
+    $range = (int)$tmp;
+}
+
+$statement = "select * from book order by title " . $sort . " limit " . $range . " offset " . $from;
 $result = $db->query($statement);
 while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $tmp = new Book (
