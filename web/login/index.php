@@ -23,7 +23,7 @@
 
 
     <script>
-        const inputPassword = documen.getElementById("password");
+        const inputPassword = document.getElementById("password");
         const showPassword = document.getElementById("showPasswordUser");
 
         showPassword.addEventListener("input", (e) => {
