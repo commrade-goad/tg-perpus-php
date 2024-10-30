@@ -1,6 +1,6 @@
 <?php
 
-class Book {
+class Book implements JsonSerializable{
     public int $id;
     public string $title;
     public string $author;
@@ -17,5 +17,17 @@ class Book {
         $this->tags = $tags;
         $this->year = $year;
         $this->cover = $cover;
+    }
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->id,
+            'title' => $this->title,
+            'author' => $this->author,
+            'desc' => $this->desc,
+            'tags' => $this->tags,
+            'year' => $this->year,
+            'cover' => $this->cover,
+        ];
     }
 }
