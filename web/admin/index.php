@@ -7,15 +7,19 @@
 </head>
 <body>
     <div class="header">
-
+        <h2>Perpustakaan UKDC</h2>
     </div>
 
     <div class="sidebar">
-
+        <div class="sidebar-container">
+            <a href="">Home</a>
+            <a href="">Overview</a>
+            <a href="">Add</a>
+        </div>
     </div>
 
     <div class="container">
-        
+
     </div>
 </body>
 </html>
