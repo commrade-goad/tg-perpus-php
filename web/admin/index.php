@@ -6,6 +6,16 @@
     <title>Admin</title>
 </head>
 <body>
-    
+    <div class="header">
+
+    </div>
+
+    <div class="sidebar">
+
+    </div>
+
+    <div class="container">
+        
+    </div>
 </body>
 </html>
