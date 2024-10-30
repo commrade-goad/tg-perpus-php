@@ -38,5 +38,9 @@
         </form>
     </div>
     <div class="bg-blue-500 font-bold text-center text-2xl p-5 border-t-4">@Copyright UKDC IF23</div>
+
+    <div>
+        <label for=""></label>
+    </div>
 </body>
 </html>
