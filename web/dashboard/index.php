@@ -34,11 +34,7 @@ if (!isset($_SESSION['npm'])) {
         </form>
     </div>
 
-    
-
     <div class="bg-blue-500 h-screen flex flex-col items-center justify-center text-center">
-    
-   
         <div class="bg-blue-400 rounded-xl shadow-lg p-8 w-full max-w-xl -mt-80">
             <div class="text-white text-2xl p-3">
                 <h1>Welcome, <?php echo htmlspecialchars($_SESSION['npm']); ?>!</h1>
