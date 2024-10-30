@@ -31,10 +31,12 @@
             <label for="password"></label>
             <input type="password" name="password" id="password" class="bg-blue-200 w-1/8 p-2 text-base border text-xl 
             rounded-xl border-white border-4 focus:border-white focus:outline-none mt-3" placeholder="Password">
-            <label for="showPassword">
-                <input type="checkbox" id="showPassword">
-                Tampilkan Kata Sandi
-            </label>
+            <div class="class">
+                <label for="showPassword">
+                    <input type="checkbox" id="showPassword">
+                    Tampilkan Kata Sandi
+                </label>
+            </div>
         </div>
         <button type="submit" class="bg-white text-blue-500 font-bold py-2 px-4 rounded mt-3">
             Login
