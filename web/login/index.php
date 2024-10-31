@@ -12,7 +12,7 @@
         }
         input:-webkit-autofill {
             color: white !important;
-            background-color: #3b82f6 !important; /* Sesuaikan dengan warna latar belakang input Anda */
+            background-color: #3b82f6 !important;
             -webkit-text-fill-color: white !important;
             transition: background-color 5000s ease-in-out 0s;
         }
@@ -38,7 +38,7 @@
                     placeholder="Password" required>
                 </div>
                 <div class="mt-2">
-                    <label for="showPassword" class="flex items-center text-gray-700 text-white">
+                    <label for="showPassword" class="flex items-center text-white">
                         <input type="checkbox" id="showPassword" class="mr-2 ml-1">
                         Tampilkan Kata Sandi
                     </label>
