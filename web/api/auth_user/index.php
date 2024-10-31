@@ -32,7 +32,7 @@ $result = $db->query($statement);
 
 if (!$row = $result->fetchArray(SQLITE3_ASSOC)) {
     $hashed = password_hash($simp_key, PASSWORD_DEFAULT);
-    $insertStatement = "INSERT INTO user (id, password) VALUES (0, '" . $hashed . "')"; 
+    $insertStatement = "INSERT INTO user (id, password, type) VALUES (0, '" . $hashed . "', 1)"; 
     if (!$db->exec($insertStatement)) {
         echo json_encode(["success" => 0, "message" => "Failed to create user id 0."]);
         exit();
@@ -53,9 +53,9 @@ if ($insertStatement) {
             $id = $user["id"];
             
             if (password_verify($password, $hashedPassword)) {
-                echo json_encode(["success" => 1, "message" => "Login successful."]);
                 $_SESSION['role'] = $role;
                 $_SESSION['id'] = $id;
+                echo json_encode(["success" => 1, "message" => "Login successful."]);
             } else {
                 echo json_encode([
                     "success" => 0, 
