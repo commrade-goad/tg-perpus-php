@@ -25,7 +25,7 @@
 
 1. `add_book` (admin access)
 
-    - accept : `title`, `author`, `desc`, `tags`, `year`, `cover`
+    - accept : `title`, `author`, `desc`, `tags`, `year`, `img`(Optional)
     - usage  : see [test.py](./test.py)
     - return : `error` or `success` with a string
 
@@ -74,7 +74,7 @@
 
 9. `edit_book` (admin access)
 
-    - accept : `id`, `title`, `author`, `desc`, `tags`, `year`, `cover`
+    - accept : `id`, `title`, `author`, `desc`, `tags`, `year`, `img`(Optional)
     - usage  : see [test.py](./test.py) and add the `id=1`
     - return : `error` or `success` with a string
 
@@ -92,7 +92,7 @@
 
 12. `get_book`
 
-    - accept : `id`(to take one book info), `from`, `range`, `sort`
+    - accept : `id`(to take one book info), `from`(Optional), `range`(Optional), `sort`(Optional)
     - usage  : `localhost/api/get_book?id=2`
     - usage  : `localhost/api/get_book?from=0&range=20&sort=ASC`
     - return : book json
@@ -105,19 +105,19 @@
 
 14. `get_book_from_tag`
 
-    - accept : `from`, `range`, `sort`
-    - usage  : `localhost/api/get_book_from_tag?from=0&range=20&sort=DESC`
+    - accept : `id`, `from`(Optional), `range`(Optional), `sort`(Optional)
+    - usage  : `localhost/api/get_book_from_tag?id=2&from=0&range=20&sort=DESC`
     - return : book json
 
 15. `get_tag`
 
-    - accept : `from`, `range`, `sort`
+    - accept : `from`(Optional), `range`(Optional), `sort`(Optional)
     - usage  : `localhost/api/get_tag?from=0&range=20`
     - return : tag json
 
-15. `get_user`
+15. `get_user` (admin access)
 
-    - accept : `from`, `range`, `sort`
+    - accept : `from`(Optional), `range`(Optional), `sort`(Optional)
     - usage  : `localhost/api/get_user?from=0&range=20`
     - return : user json
 
