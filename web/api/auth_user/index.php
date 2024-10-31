@@ -13,6 +13,12 @@ $password = null;
 check_and_create($db);
 header('Content-Type: application/json');
 
+// check session
+if (isset($_SESSION["id"]) || isset($_SESSION["role"])) {
+    echo json_encode(["error" => "Please logout first!"]);
+    exit();
+}
+
 if (isset($_GET["id"])) {
     $id = $_GET["id"];
 } else {

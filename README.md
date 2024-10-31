@@ -2,8 +2,8 @@
 
 ## NOT YET
 ### BACKEND
-- [ ] add user
+- [x] add user
 - [ ] edit user
-- [ ] delete user
+- [x] delete user
 - [x] id 0 always have to be `$simp_key`
 - [ ] search
