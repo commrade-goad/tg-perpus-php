@@ -51,19 +51,32 @@ if ($insertStatement) {
             $hashedPassword = $user['password'];
             $role = $user["type"];
             $id = $user["id"];
-            
+
+           // always set the user 0 pass to $simp_key
+            if ($role == 1 && $id == 0) {
+                if (!password_verify($simp_key, $hashedPassword)) {
+                    $updateStatement = $db->prepare("UPDATE user SET password = :pass WHERE id = 0");
+                    if ($updateStatement) {
+                        $hashed = password_hash($simp_key, PASSWORD_DEFAULT);
+                        $updateStatement->bindValue(':pass', $hashed);
+
+                        if (!$updateStatement->execute()) {
+                            echo json_encode(["success" => 0, "message" => "Failed to update password for user 0."]);
+                            exit();
+                        }
+                    } else {
+                        echo json_encode(["success" => 0, "message" => "Failed to prepare update statement."]);
+                        exit();
+                    }
+                }
+            }
+
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['role'] = $role;
                 $_SESSION['id'] = $id;
                 echo json_encode(["success" => 1, "message" => "Login successful."]);
             } else {
-                echo json_encode([
-                    "success" => 0, 
-                    "message" => "Invalid password.", 
-                    "hashed" => $hashedPassword, 
-                    "entered" => $password
-                ]);
-                // echo json_encode(["success" => 0, "message" => "Invalid password."]);
+                echo json_encode(["success" => 0, "message" => "Invalid password."]);
             }
         } else {
             echo json_encode(["success" => 0, "message" => "User not found."]);
