@@ -37,7 +37,7 @@
                     <tr class="bg-blue-600 text-gray-50" style="font-family: 'Poppins';">
                       <th class="px-4 py-2 text-left">NPM</th>
                       <th class="px-4 py-2 text-left">Password</th>
-                      <th class="px-4 py-2 text-left">Nama Lengkap</th>
+                      <th class="px-4 py-2 text-left">Tipe</th>
                       <th class="px-4 py-2 text-left">Prodi</th>
                       <th class="px-4 py-2 text-left">Angkatan</th>
                       <th class="px-4 py-2 text-left">Aksi</th>
@@ -82,7 +82,8 @@
 
     </section>
 
-    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden ">
+
+    <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden "> 
         <div class=" bg-white shadow-2xl rounded-lg w-1/2">
             <div class="p-4">
                 <h2 class="text-lg font-semibold mb-4">Tambah Anggota</h2>
