@@ -135,12 +135,8 @@
         event.preventDefault();
     }
     
-    
-    
-    
 </script>
     <footer class="bg-blue-700 p-4 text-gray-50 text-center" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</footer>
 
-    
 </body>
 </html> 
