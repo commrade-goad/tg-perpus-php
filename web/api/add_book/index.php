@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $db = null;
 include "../../../private/connect.php";
@@ -16,6 +17,12 @@ $cover = "";
 
 check_and_create($db);
 header('Content-Type: application/json');
+
+// check session
+if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] == 0) {
+    echo json_encode(["error" => "Unauthorized access!"]);
+    exit();
+}
 
 // =======================
 
