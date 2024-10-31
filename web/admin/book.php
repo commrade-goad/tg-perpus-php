@@ -9,12 +9,12 @@
 </head>
 <body class="font-poppins">
     <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center" style="font-family: 'Poppins';">Perpustakaan</header>
-    <div class="flex items-center justify-center p-2">
+    <!-- <div class="flex items-center justify-center p-2">
         <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Dashboard</a>
         <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Anggota</a>
         <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Peminjaman</a>
         <a href="#" class="p-3 bg-blue-300 rounded-lg text-gray-600 font-medium">Pengembalian</a>
-    </div>
+    </div> -->
     <div class="bg-blue-400 p-4 flex justify-between items-center">
         
         <!-- <div class=" text-gray-50 font-semibold text-lg" style="font-family: 'Poppins';">Selamat Datang Admin</div> -->
@@ -96,6 +96,10 @@
                     <div class="mb-4">
                         <label for="" class="text-gray-700">Judul Buku</label>
                         <input type="text" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Judul Buku">
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="text-gray-700">Gambar Cover</label>
+                        <input type="file" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Gambar">
                     </div>
                     <div class="mb-4">
                         <label for="" class="text-gray-700">Pengarang</label>
