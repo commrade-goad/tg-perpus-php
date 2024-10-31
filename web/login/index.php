@@ -24,7 +24,7 @@
     <div class="bg-blue-500 rounded-xl shadow-lg p-8 w-full max-w-xs">
         <h1 class="p-5 text-3xl font-bold text-white">Login Perpustakaan UKDC</h1>
         
-            <form action="/login/proses.php" method="POST">
+            <form id="loginForm" method="POST">
                 <div>
                     <label for="npm" class="sr-only">NIM</label>
                     <input type="text" name="npm" id="npm" class="bg-blue-300 w-full p-2 text-xl rounded-xl 
@@ -47,35 +47,54 @@
                     Login
                 </button>
             </form>
+            <p id="loginMessage" class="text-white mt-4"></p>
         </div>
     </div>
-    <!-- <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white">@Copyright UKDC IF23</div> -->
 
     <script>
-    const showPassword = document.getElementById('showPassword');
-    const passwordInput = document.getElementById('password');
-    const npmInput = document.getElementById('npm');
+        const showPassword = document.getElementById('showPassword');
+        const passwordInput = document.getElementById('password');
+        const npmInput = document.getElementById('npm');
+        const loginForm = document.getElementById('loginForm');
+        const loginMessage = document.getElementById('loginMessage');
 
-    showPassword.addEventListener("change", (e) => {
-        passwordInput.setAttribute("type", e.target.checked ? "text" : "password");
-    });
+        showPassword.addEventListener("change", (e) => {
+            passwordInput.setAttribute("type", e.target.checked ? "text" : "password");
+        });
 
-    npmInput.setAttribute("title", "Masukkan NIM Anda");
-    npmInput.oninvalid = function() {
-        this.setCustomValidity("Mohon isi NIM Anda");
-    };
-    npmInput.oninput = function() {
-        this.setCustomValidity("");
-    };
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-    passwordInput.setAttribute("title", "Masukkan password Anda");
-    passwordInput.oninvalid = function() {
-        this.setCustomValidity("Mohon isi password Anda");
-    };
-    passwordInput.oninput = function() {
-        this.setCustomValidity("");
-    };
-</script>
+            const id = npmInput.value;
+            const password = passwordInput.value;
 
+            try {
+                // Send login request to API
+                const response = await fetch(`/api/auth_user?id=${id}&password=${password}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                
+                const result = await response.json();
+                console.log("API Response:", result); // Debugging log for API response
+
+                // Check if login was successful
+                if (result.success === 1) {
+                    window.location.href = '/dashboard/index.php'; 
+                } else {
+                    loginMessage.textContent = "Login gagal. Silakan periksa NIM dan Password Anda.";
+                }
+            } catch (error) {
+                console.error("Error during login:", error);
+                loginMessage.textContent = "Terjadi kesalahan saat mencoba login.";
+            }
+        });
+    </script>
 </body>
 </html>

@@ -1,9 +1,15 @@
+// tailwind.config.js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./admin/**/*.{html,js}"],
+  content: [
+    "./src/**/*.{html,js}", // Sesuaikan dengan struktur proyek Anda
+    "./public/index.html",
+  ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'], // Menambahkan font Poppins ke default sans
+      },
+    },
   },
-  plugins: [],
 }
-
