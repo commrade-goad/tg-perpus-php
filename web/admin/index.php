@@ -21,7 +21,7 @@
     
     <section class="grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
         <div class="w-full bg-blue-400 rounded">
-            <img src="../src/gambar2.jpg" alt="">
+            <img src="/src/gambar2.jpg" alt="">
             <div class="block relative w-full bg-sky-400 p-1">
                 <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
                     <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';">0</p>
@@ -30,7 +30,7 @@
             </div>
         </div>
         <div class="w-full bg-blue-400 rounded">
-            <img src="../src/gambar2.jpg" alt="">
+            <img src="/src/gambar2.jpg" alt="">
             <div class="block relative w-full bg-sky-400 p-1">
                 <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
                     <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';">0</p>
@@ -39,7 +39,7 @@
             </div>
         </div>
         <div class="w-full bg-blue-400 rounded">
-            <img src="../src/gambar2.jpg" alt="">
+            <img src="/src/gambar2.jpg" alt="">
             <div class="block relative w-full bg-sky-400 p-1">
                 <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
                     <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';">0</p>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="w-full bg-blue-400 rounded">
-            <img src="../src/gambar2.jpg" alt="">
+            <img src="/src/gambar2.jpg" alt="">
             <div class="block relative w-full bg-sky-400 p-1">
                 <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
                     <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';">0</p>
