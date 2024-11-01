@@ -129,6 +129,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 const booksContainer = document.getElementById('booksContainer');
                 booksContainer.innerHTML = '';
 
+                // Menampilkan hasil dari ajax search
                 data.forEach(result => {
                     const book = result.book;
                     const bookElement = document.createElement('div');
@@ -154,6 +155,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             }
         }
 
+        // Mengambil data dari /dashboard/index.php apabila search akan sesuai pada book.php
         function handleSearchClick() {
             const query = document.getElementById('searchInput').value.trim();
             if (query) {
@@ -161,6 +163,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             }
         }
 
+        // Ajax Search
         document.getElementById('searchInput').addEventListener('input', (event) => {
             const query = event.target.value.trim();
             if (query) {
@@ -169,7 +172,8 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 fetchBooks();
             }
         });
-
+        
+        // Menampilkan search buku dari tag
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             const query = urlParams.get('search');

@@ -37,6 +37,7 @@
 </body>
 <script>
 
+        // Untuk timeout
         const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
         setTimeout(async () => {
             try {
@@ -51,7 +52,7 @@
             
         }, timeoutDuration * 1000);
 
-        // Ini untuk API ambil Buku dari DB
+        // Ini untuk API ambil data Buku menggunakan ID
         async function getData(id) {
             try {
                 const response = await fetch(`/api/get_book?id=${id}`);

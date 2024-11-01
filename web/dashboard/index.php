@@ -72,16 +72,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">© Copyright IF UKDC 2023</div>
 
     <script>
-        // Kirim data ke book.php bagian Search
-        function handleSearch() {
-            const searchInput = document.getElementById('search').value.trim();
-            if (searchInput) {
-                window.location.href = `/dashboard/book.php?search=${encodeURIComponent(searchInput)}`;
-                return false;
-            }
-            return true;
-        }
-
         // Kalo timeout
         const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>; // durasi
         setTimeout(async () => {
@@ -95,6 +85,17 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 }
             }, timeoutDuration * 1000);
         
+        // Kirim data ke book.php bagian Search
+        function handleSearch() {
+            const searchInput = document.getElementById('search').value.trim();
+            if (searchInput) {
+                window.location.href = `/dashboard/book.php?search=${encodeURIComponent(searchInput)}`;
+                return false;
+            }
+            return true;
+        }
+
+
         // Ambil tag untuk display
         async function fetchTags() {
             try {
