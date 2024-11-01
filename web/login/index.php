@@ -69,7 +69,6 @@
             const password = passwordInput.value;
 
             try {
-                // Send login request to API
                 const response = await fetch(`/api/auth_user?id=${id}&password=${password}`, {
                     method: 'GET',
                     headers: {
@@ -82,9 +81,8 @@
                 }
                 
                 const result = await response.json();
-                console.log("API Response:", result); // Debugging log for API response
+                console.log("API Response:", result);
 
-                // Check if login was successful
                 if (result.success === 1) {
                     window.location.href = '/dashboard/index.php'; 
                 } else {
