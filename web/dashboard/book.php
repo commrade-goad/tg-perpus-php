@@ -18,6 +18,42 @@ if (isset($_SESSION['LAST_ACTIVITY'])) {
 }
 
 $_SESSION['LAST_ACTIVITY'] = time();
+<<<<<<< Updated upstream
+=======
+
+$books = [
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 1',
+        'author' => 'Author 1'
+    ],
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 2',
+        'author' => 'Author 2'
+    ],
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 3',
+        'author' => 'Author 3'
+    ],
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 4',
+        'author' => 'Author 4'
+    ],
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 5',
+        'author' => 'Author 5'
+    ],
+    [
+        'image' => 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg',
+        'title' => 'Judul 5',
+        'author' => 'Author 5'
+    ],
+];
+>>>>>>> Stashed changes
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +68,9 @@ $_SESSION['LAST_ACTIVITY'] = time();
 </head>
 <body>
 
-    <div class="bg-yellow-500 font-bold text-center text-4xl p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center">
-            Perpustakaan UKDC
+    <div class="bg-blue-800 font-bold font-['Poppins'] text-center text-4xl p-5 border-b-4 flex items-center justify-between">
+        <div class="flex-1 text-gray-50 text-4xl text-center">
+            PERPUSTAKAAN UKDC
         </div>
     </div>
 
@@ -44,31 +80,45 @@ $_SESSION['LAST_ACTIVITY'] = time();
         </form>
     </div>
 
+<<<<<<< Updated upstream
     <div class="bg-blue-600 flex p-10 justify-center items-center -m-10">
         <input type="text" id="searchInput" class="bg-blue-300 text-white w-1/2 p-2 text-xl rounded-xl 
+=======
+    <div class="bg-blue-600 flex p-6 justify-center items-center">
+        <input type="text" class="bg-blue-300 text-white w-1/2 p-2 text-xl rounded-xl 
+>>>>>>> Stashed changes
             border-white border-2 focus:border-blue-600 focus:outline-none" placeholder="Telusuri">
         <a href="#" class="ml-3 text-2xl text-white">
             <i class="fas fa-search"></i>
         </a>
     </div>
 
+<<<<<<< Updated upstream
     <div class="bg-blue-600">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4" id="booksContainer">
+=======
+    <div class="bg-blue-600 p-5">
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 p-4">
+>>>>>>> Stashed changes
             <?php foreach ($books as $book): ?>
                 <div class="p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow">
                     <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">
                         <div class="w-50 h-50">
+<<<<<<< Updated upstream
                             <img src="<?php echo htmlspecialchars($book['image'] ?: 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg'); ?>" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
+=======
+                            <img src="<?php echo htmlspecialchars($book['image']); ?>" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2 hover:brightness-75">
+>>>>>>> Stashed changes
                         </div>
-                        <div class="text-lg font-semibold judul"><?php echo htmlspecialchars($book['title']); ?></div>
-                        <div class="text-sm text-gray-500 author"><?php echo htmlspecialchars($book['author']); ?></div>
+                        <div class="text-lg font-semibold font-['Poppins'] judul"><?php echo htmlspecialchars($book['title']); ?></div>
+                        <div class="text-sm text-gray-500 font-['Poppins'] author"><?php echo htmlspecialchars($book['author']); ?></div>
                     </a>
                 </div>
             <?php endforeach; ?>
         </div>
     </div>
 
-    <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">© Copyright IF UKDC 2023</div>
+    <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">© Copyright IF UKDC 2023</div>
 
     <script>
         // Ini untuk API Timeout
