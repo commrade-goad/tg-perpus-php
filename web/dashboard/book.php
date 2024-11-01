@@ -58,7 +58,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 <div class="p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow">
                     <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">
                         <div class="w-50 h-50">
-                            <img src="<?php echo htmlspecialchars($book['image'] ?: 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg'); ?>" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
+                            <img src="<?php echo htmlspecialchars($book['image'] ?: '/src/cover.jpg'); ?>" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
                         </div>
                         <div class="text-lg font-semibold judul"><?php echo htmlspecialchars($book['title']); ?></div>
                         <div class="text-sm text-gray-500 author"><?php echo htmlspecialchars($book['author']); ?></div>
@@ -72,7 +72,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
     <script>
         // Ini untuk API Timeout
-        const timeoutDuration = <?php echo $timeout_duration; ?>;
+        const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
         setTimeout(async () => {
             try {
                 const response = await fetch('/api/auth_destroy', { method: 'POST' });
@@ -94,16 +94,8 @@ $_SESSION['LAST_ACTIVITY'] = time();
         async function fetchBooks() {
             try {
                 const response = await fetch('/api/get_book?from=0&range=20&sort=ASC');
-                
-                if (!response.ok) {
-                    throw new Error("Failed to fetch books");
-                }
 
                 const data = await response.json();
-
-                if (!Array.isArray(data)) {
-                    throw new Error("Invalid data format");
-                }
 
                 const booksContainer = document.getElementById('booksContainer');
                 booksContainer.innerHTML = '';
@@ -112,20 +104,30 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     const bookElement = document.createElement('div');
                     bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
 
-                    const coverImage = book.cover || 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg'; // Gambar default jika cover kosong
+                    const coverImage = book.cover || '/src/cover.jpg';
 
                     bookElement.innerHTML = `
-                        <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">
-                            <div class="w-50 h-50">
-                                <img src="${coverImage}" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
-                            </div>
-                            <div class="text-lg font-semibold judul">${book.title}</div>
-                            <div class="text-sm text-gray-500 author">${book.author}</div>
-                        </a>
-                    `;
-
+                    <a href="#">
+                    <div class="flex flex-col items-center text-center" book_id="${book.id}" id="sendThis">
+                        <div class="w-50 h-50">
+                            <img src="${coverImage}" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
+                        </div>
+                        <div class="text-lg font-semibold judul">${book.title}</div>
+                        <div class="text-sm text-gray-500 author">${book.author}</div>
+                    </div>
+                    </a>`;
+                    
                     booksContainer.appendChild(bookElement);
-                });
+                    const sendThis = document.querySelector(`[book_id="${book.id}"]`);
+                    
+                    if (sendThis) {
+                        sendThis.addEventListener("click", () => {
+                            const bookId = sendThis.getAttribute("book_id");
+                            console.log("Clicked book with ID:", bookId);
+                            window.location.href = `/dashboard/book_detail.php?id=${bookId}`;
+                            });
+                        };
+                    });
 
             } catch (error) {
                 console.error("Error fetching books:", error);
@@ -151,7 +153,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     const bookElement = document.createElement('div');
                     bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
 
-                    const coverImage = book.cover || 'https://waifu2x.booru.pics/outfiles/891050a5d362d586dbf746b0420cf92563d40acb_s2_n3_y1.jpg'; // Gambar default jika cover kosong
+                    const coverImage = book.cover || '/src/cover.jpg';
 
                     bookElement.innerHTML = `
                         <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">

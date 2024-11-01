@@ -70,7 +70,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">© Copyright IF UKDC 2023</div>
 
     <script>
-        const timeoutDuration = <?php echo $timeout_duration; ?>; 
+        const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
         setTimeout(async () => {
             try {
                 const response = await fetch('/api/auth_destroy', { method: 'POST' });
