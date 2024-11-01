@@ -6,9 +6,10 @@
     <title>Perpustakaan UKDC</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+    <style >
         body {
             font-family: 'Poppins', sans-serif;
+            ;
         }
         input:-webkit-autofill {
             color: white !important;
@@ -19,16 +20,21 @@
     </style>
 </head>
 <body>
-    <div class="bg-yellow-500 font-bold text-center text-4xl p-5 border-b-4 text-white">Perpustakaan UKDC</div>
+<div class="bg-blue-800 font-bold font-['Poppins'] text-center text-4xl p-5 border-b-4 flex items-center justify-between">
+        <div class="flex-1 text-white text-4xl text-center">
+            PERPUSTAKAAN UKDC
+        </div>
+    </div>
+
     <div class="bg-blue-600 h-screen flex flex-col items-center justify-center text-center">
     <div class="bg-blue-500 rounded-xl shadow-lg p-8 w-full max-w-xs">
-        <h1 class="p-5 text-3xl font-bold text-white">Login Perpustakaan UKDC</h1>
+        <h1 class="p-5 text-3xl font-semibold text-white font-['Poppins']">LOGIN PERPUSTAKAAN UKDC</h1>
         
             <form id="loginForm" method="POST">
                 <div>
                     <label for="npm" class="sr-only">NIM</label>
                     <input type="text" name="npm" id="npm" class="bg-blue-300 w-full p-2 text-xl rounded-xl 
-                    border-white border-2 focus:border-blue-600 focus:outline-none text-white" 
+                    border-white border-2 focus:border-blue-600 focus:outline-none text-gray-50 " 
                      placeholder="NIM" required>
                 </div>
                 <div class="mt-3">
@@ -38,12 +44,12 @@
                     placeholder="Password" required>
                 </div>
                 <div class="mt-2">
-                    <label for="showPassword" class="flex items-center text-white">
-                        <input type="checkbox" id="showPassword" class="mr-2 ml-1">
+                    <label for="showPassword" class="flex items-center text-gray-50">
+                        <input type="checkbox" id="showPassword" class="mr-2 ml-1 font-['Poppins']">
                         Tampilkan Kata Sandi
                     </label>
                 </div>
-                <button type="submit" class="bg-blue-600 text-white font-bold py-2 px-4 rounded mt-3 w-full transition-shadow duration-400 hover:shadow-2xl">
+                <button type="submit" class="bg-blue-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-3 w-full transition-shadow duration-400 hover:shadow-2xl">
                     Login
                 </button>
             </form>
