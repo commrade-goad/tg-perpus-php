@@ -47,24 +47,14 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <div class="bg-blue-600 flex p-10 justify-center items-center -m-10">
         <input type="text" id="searchInput" class="bg-blue-300 text-white w-1/2 p-2 text-xl rounded-xl 
             border-white border-2 focus:border-blue-600 focus:outline-none" placeholder="Telusuri">
-        <a href="#" class="ml-3 text-2xl text-white">
+        <a href="#" class="ml-3 text-2xl text-white" onclick="handleSearchClick()">
             <i class="fas fa-search"></i>
         </a>
     </div>
 
     <div class="bg-blue-600">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4" id="booksContainer">
-            <?php foreach ($books as $book): ?>
-                <div class="p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow">
-                    <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">
-                        <div class="w-50 h-50">
-                            <img src="<?php echo htmlspecialchars($book['image'] ?: '/src/cover.jpg'); ?>" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
-                        </div>
-                        <div class="text-lg font-semibold judul"><?php echo htmlspecialchars($book['title']); ?></div>
-                        <div class="text-sm text-gray-500 author"><?php echo htmlspecialchars($book['author']); ?></div>
-                    </a>
-                </div>
-            <?php endforeach; ?>
+            <!-- Buku akan ditampilkan di sini -->
         </div>
     </div>
 
@@ -118,16 +108,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     </a>`;
                     
                     booksContainer.appendChild(bookElement);
-                    const sendThis = document.querySelector(`[book_id="${book.id}"]`);
-                    
-                    if (sendThis) {
-                        sendThis.addEventListener("click", () => {
-                            const bookId = sendThis.getAttribute("book_id");
-                            console.log("Clicked book with ID:", bookId);
-                            window.location.href = `/dashboard/book_detail.php?id=${bookId}`;
-                            });
-                        };
-                    });
+                });
 
             } catch (error) {
                 console.error("Error fetching books:", error);
@@ -156,7 +137,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     const coverImage = book.cover || '/src/cover.jpg';
 
                     bookElement.innerHTML = `
-                        <a href="/dashboard/book_detail.php" class="flex flex-col items-center text-center">
+                        <a href="/dashboard/book_detail.php?id=${book.id}" class="flex flex-col items-center text-center">
                             <div class="w-50 h-50">
                                 <img src="${coverImage}" alt="ini gambar" class="w-full h-full object-cover rounded-lg mb-2">
                             </div>
@@ -173,6 +154,13 @@ $_SESSION['LAST_ACTIVITY'] = time();
             }
         }
 
+        function handleSearchClick() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                searchBooks(query);
+            }
+        }
+
         document.getElementById('searchInput').addEventListener('input', (event) => {
             const query = event.target.value.trim();
             if (query) {
@@ -182,7 +170,21 @@ $_SESSION['LAST_ACTIVITY'] = time();
             }
         });
 
-        document.addEventListener('DOMContentLoaded', fetchBooks);
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('search');
+            const tag = urlParams.get('tag'); // Dapatkan parameter tag jika ada
+
+            if (query) {
+                document.getElementById('searchInput').value = query;
+                searchBooks(query);
+            } else if (tag) {
+                document.getElementById('searchInput').value = tag;
+                searchBooks(tag); // Lakukan pencarian berdasarkan tag
+            } else {
+                fetchBooks();
+            }
+        });
     </script>
 
 </body>
