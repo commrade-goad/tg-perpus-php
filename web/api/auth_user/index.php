@@ -15,7 +15,7 @@ header('Content-Type: application/json');
 
 // check session
 if (isset($_SESSION["id"]) || isset($_SESSION["role"])) {
-    echo json_encode(["error" => "Please logout first!"]);
+    echo json_encode(["success" => 0, "message" => "Please logout first!"]);
     exit();
 }
 

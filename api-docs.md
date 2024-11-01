@@ -18,6 +18,7 @@
 │   ├── get_book_from_tag
 │   ├── get_tag
 │   └── get_user
+│   └── search
 ```
 
 ## Usage
@@ -120,4 +121,10 @@
     - accept : `from`(Optional), `range`(Optional), `sort`(Optional)
     - usage  : `localhost/api/get_user?from=0&range=20`
     - return : user json
+
+16. `search`
+
+    - accept : `q`, `from`(Optional), `range`(Optional), `sort`(Optional)
+    - usage  : `localhost/api/search?q=program`
+    - return : book json with score `{book: .. , score : ..}`
 
