@@ -18,6 +18,24 @@ if (isset($_GET["sort"])) {
     }
 }
 
+if (isset($_GET["id"])) {
+    $tmp = $_GET["id"];
+    $id = (int)$tmp;
+    $statement = "select * from all_tags where tags_id = " . $id;
+    $result = $db->query($statement);
+    while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+        $tmp = new Tag (
+            $row["tags_id"],
+            $row["name"],
+            $row["img"],
+        );
+        array_push($tags, $tmp);
+    }
+
+    echo json_encode($tags);
+    exit();
+}
+
 if (isset($_GET["from"])) {
     $tmp = $_GET["from"];
     $from = (int)$tmp;

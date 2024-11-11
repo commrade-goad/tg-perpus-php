@@ -126,7 +126,7 @@ function cosineSimilarity(array $vec1, array $vec2): float {
     return ($magnitude1 == 0.0 || $magnitude2 == 0.0) ? 0.0 : $dotProduct / ($magnitude1 * $magnitude2);
 }
 
-$statement = "SELECT * FROM book ORDER BY title $sort LIMIT $range OFFSET $from";
+$statement = "SELECT * FROM book ORDER BY title $sort";
 $result = $db->query($statement);
 while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $tmp = new Book(
@@ -173,5 +173,12 @@ foreach ($arraySimilarity as $sim) {
     }
 }
 
-echo json_encode($searchedBook);
+$finalBook = [];
+for ($i = 0; $i < $range; $i++) {
+    if ($from + $i >= count($searchedBook)) {
+        break;
+    }
+    array_push($finalBook, $searchedBook[$from + $i]);
+}
+echo json_encode($finalBook);
 close_db($db);
