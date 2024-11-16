@@ -20,12 +20,15 @@ if ($_SESSION["role"] == 0) {
             <input id="srcbox" type="text" placeholder="search title, author, year, tag" style="width: 250px">
             <button id="srcbtn" onclick="searchBookad()">Search</button>
             <div id="sbook" style="display: flex; flex-direction:row;"></div>
-            <h2> all books </h2>
+            <h2> all books (edit book + tag doesnt work)</h2>
             <button onclick="addbook()">add</button>
             <div id="allbooks"></div>
             <p> page <button id="page" onclick="nextBooks()">1</button><button onclick="prevBooks()">prev</button></p>
             <br>
             <div id="addeditdiv"></div>
+            <h2> all user </h2>
+            <div id="userlist"></div>
+            <div id="userform"></div>
         </div>
         <script src="/example/dashboard.js">
         </script>

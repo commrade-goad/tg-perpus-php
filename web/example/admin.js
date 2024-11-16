@@ -9,7 +9,7 @@ function showBooks() {
     const ptag = document.getElementById("allbooks");
     ptag.innerHTML = "";
     
-    fetch(`/api/get_book?range=${range}&from=${from_r}`)
+    fetch(`/api/get_book?range=${encodeURIComponent(range)}&from=${encodeURIComponent(from_r)}`)
         .then(response => response.json())
         .then(data => {
             for (let i = 0; i < data.length; i++) {
@@ -106,6 +106,26 @@ async function getTag() {
         .catch(error => console.error('Error fetching data:', error));
 }
 
+async function updateTagList() {
+    book_tag = await getTag();
+    const el2 = document.getElementById("tag-list");
+    el2.innerHTML = ``;
+    for (let i = 0; i < book_tag.length; i++) {
+        const current_tag = book_tag[i];
+        el2.innerHTML += `
+        <button onclick="addTagToArr(${current_tag.id})">${current_tag.name}</button>
+        `; 
+    }
+    el2.innerHTML += `
+    <button onclick="addNewTagToArrMenu()">[ add new ]</button>
+    `;
+    el2.innerHTML += `
+    <button onclick="delTagToArrMenu()">[ del tag ]</button>
+    <div id="add-new"></div>
+    `;
+    redrawTag();
+}
+
 async function addbook() {
     book_tag = await getTag();
     const el = document.getElementById("addeditdiv");
@@ -117,16 +137,81 @@ async function addbook() {
     <input type="text" placeholder="cover" id="cover"><br>
     <p id="selected-tag"></p>
     <div id="tag-edit"></div>
+    <div id="tag-list"></div>
     <button onclick="submitBook()">submit</button>
     `;
-    const el2 = document.getElementById("tag-edit");
+    const el2 = document.getElementById("tag-list");
     for (let i = 0; i < book_tag.length; i++) {
         const current_tag = book_tag[i];
         el2.innerHTML += `
         <button onclick="addTagToArr(${current_tag.id})">${current_tag.name}</button>
         `; 
     }
+    el2.innerHTML += `
+    <button onclick="addNewTagToArrMenu()">[ add new ]</button>
+    `;
+    el2.innerHTML += `
+    <button onclick="delTagToArrMenu()">[ del tag ]</button>
+    <div id="add-new"></div>
+    `;
     redrawTag();
+}
+
+function addNewTagToArrMenu() {
+    const el = document.getElementById("add-new");
+    if (el.innerHTML === "") {
+        el.innerHTML = `<h3>add new tag</h3>`;
+        el.innerHTML += `<input type="text" placeholder="name" id="tname">`;
+        el.innerHTML += `<br>`;
+        el.innerHTML += `<input type="text" placeholder="cover" id="tcover">`;
+        el.innerHTML += `<br>`;
+        el.innerHTML += `<button onclick="addNewTag()">add</button>`
+        el.innerHTML += `<br>`;
+    } else {
+        el.innerHTML = ``;
+    }
+}
+
+function addNewTag() {
+    const tname = document.getElementById("tname").value;
+    const tcover = document.getElementById("tcover").value;
+    console.log(tname);
+    console.log(tcover);
+    fetch(`/api/add_tag?name=${encodeURIComponent(tname)}&img=${encodeURIComponent(tcover)}`)
+        .then(response => response.json())
+        .then(_ => {
+            updateTagList();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+async function delTagToArrMenu() {
+    const res = await fetch(`/api/get_tag`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    const el = document.getElementById("add-new");
+    if (el.innerHTML === "") {
+        el.innerHTML = `<h3>del tag</h3>`;
+        for (let i = 0; i < res.length; i++) {
+            el.innerHTML += `<button onclick="deltagfrom(${res[i].id})">${res[i].id} : ${res[i].name}</button><br>`;
+        }
+        el.innerHTML += `<hr>`;
+    } else {
+        el.innerHTML = ``;
+    }
+}
+
+function deltagfrom(id) {
+    fetch(`/api/del_tag?id=${encodeURIComponent(id)}`)
+        .then(response => response.json())
+        .then(data => {
+            alert("deleted");
+            updateTagList();
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
 function redrawTag() {
@@ -170,12 +255,84 @@ function submitBook() {
     for (let i = 1; i < selected.length; i++) {
         tags += ` ${selected[i]}`;
     }
-    console.log(title);
-    console.log(author);
-    console.log(year);
-    console.log(desc);
-    console.log(cover);
-    console.log(tags);
+
+    fetch(`/api/add_book?title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&desc=${encodeURIComponent(desc)}&tags=${encodeURIComponent(tags)}&year=${encodeURIComponent(year)}&img=${encodeURIComponent(cover)}`)
+        .then(response => response.json())
+        .then(data => {
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function adduserMenu() {
+    const el = document.getElementById("userform");
+    if (el.innerHTML == "") {
+        el.innerHTML = `<input type="text" placeholder="id" id="idinput"></br>`;
+        el.innerHTML += `<input type="password" placeholder="password" id="pwdinput"></br>`;
+        el.innerHTML += `<input type="number" placeholder="type" min=0 max=1 id="typeinput"></br>`;
+        el.innerHTML += `<button onclick="adduser()">submit</button>`;
+    } else {
+        el.innerHTML = "";
+    }
+}
+
+function adduser() {
+    const ids = document.getElementById("idinput").value;
+    const type = document.getElementById("typeinput").value;
+    const password = document.getElementById("pwdinput").value;
+    fetch(`/api/add_user?id=${encodeURIComponent(ids)}&password=${encodeURIComponent(password)}&type=${encodeURIComponent(type)}`)
+        .then(response => response.json())
+        .then(_ => {
+            alert("done adding user");
+            list_all_user();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function deluser(id) {
+    fetch(`/api/del_user?id=${encodeURIComponent(id)}`)
+        .then(response => response.json())
+        .then(_ => {
+            alert("deleted user");
+            list_all_user();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function edituserFinal() {
+    const id = document.getElementById("idinput").value;
+    const password = document.getElementById("pwdinput").value;
+    fetch(`/api/edit_user?id=${encodeURIComponent(id)}&password=${encodeURIComponent(password)}`)
+        .then(response => response.json())
+        .then(_ => {
+            alert("edited user");
+            list_all_user();
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+function edituser(id) {
+    const el = document.getElementById("userform");
+    if (el.innerHTML == "") {
+        el.innerHTML = `<input type="text" placeholder="id" id="idinput" value="${id}"></br>`;
+        el.innerHTML += `<input type="password" placeholder="password" id="pwdinput"></br>`;
+        el.innerHTML += `<button onclick="edituserFinal()">submit</button>`;
+    } else {
+        el.innerHTML = "";
+    }
+}
+
+function list_all_user() {
+    const el = document.getElementById("userlist");
+    el.innerHTML = `<button onclick="adduserMenu()">add user</button>`
+    fetch(`/api/get_user`)
+        .then(response => response.json())
+        .then(data => {
+            for (let i = 0; i < data.length; i++) {
+                el.innerHTML += `<p>${data[i].id} : ${data[i].type} --> <button onclick="deluser(${data[i].id})">delete</button> <button onclick="edituser(${data[i].id})">edit</button></p>`;
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
 showBooks();
+list_all_user();
