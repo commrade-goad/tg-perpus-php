@@ -143,13 +143,13 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 
 foreach ($books as $book) {
     $sec_statement = "
-        SELECT at.name, at.tags_id 
+        SELECT at.name, at.tags_id, at.img 
         FROM book_tags bt 
         JOIN all_tags at ON bt.tags_id = at.tags_id 
         WHERE bt.book_id = " . $book->id . " ORDER BY at.name ASC";
     $result = $db->query($sec_statement);
     while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
-        $book->tags[] = new Tag($row["tags_id"], $row["name"]);
+        $book->tags[] = new Tag($row["tags_id"], $row["name"], $row["img"]);
     }
 }
 

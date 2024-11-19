@@ -120,9 +120,10 @@ async function updateTagList() {
     <button onclick="addNewTagToArrMenu()">[ add new ]</button>
     `;
     el2.innerHTML += `
-    <button onclick="delTagToArrMenu()">[ del tag ]</button>
-    <div id="add-new"></div>
-    `;
+    <button onclick="delTagToArrMenu()">[ del tag ]</button>`;
+    el2.innerHTML += `
+    <button onclick="editTagMenu()">[ edit tag ]</button>
+    <div id="add-new"></div>`;
     redrawTag();
 }
 
@@ -152,9 +153,59 @@ async function addbook() {
     `;
     el2.innerHTML += `
     <button onclick="delTagToArrMenu()">[ del tag ]</button>
-    <div id="add-new"></div>
     `;
+    el2.innerHTML += `
+    <button onclick="editTagMenu()">[ edit tag ]</button>
+    <div id="add-new"></div>`;
     redrawTag();
+}
+
+async function editTagMenu() {
+    const res = await fetch(`/api/get_tag`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    const el = document.getElementById("add-new");
+    if (el.innerHTML === "") {
+        el.innerHTML = `<h3>edit tag</h3>`;
+        for (let i = 0; i < res.length; i++) {
+            el.innerHTML += `<button onclick="stageTwoEditTagForm(${res[i].id})">${res[i].id} : ${res[i].name}</button><br>`;
+        }
+        el.innerHTML += `<hr><div id="finaledit"></div>`;
+    } else {
+        el.innerHTML = ``;
+    }
+}
+
+async function stageTwoEditTagForm(id) {
+    const res = await fetch(`/api/get_tag?id=${encodeURIComponent(id)}`)
+        .then(response => response.json())
+        .then(data => {
+            return data;
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    const sel_tag = res[0];
+    const el = document.getElementById("finaledit");
+    el.innerHTML = "";
+    el.innerHTML += `
+    <input type="text" placeholder="name" id="tag-name" value="${sel_tag.name}">
+    <input type="text" placeholder="img path" id="img-path" value="${sel_tag.img}">
+    <button onclick="finalEditTag(${sel_tag.id})">edit tag</button>
+    <hr>
+    `;
+}
+
+function finalEditTag(id) {
+    const tn = document.getElementById("tag-name").value;
+    const img = document.getElementById("img-path").value;
+    const res = fetch(`/api/edit_tag?id=${encodeURIComponent(id)}&name=${encodeURIComponent(tn)}&img=${encodeURIComponent(img)}`)
+        .then(response => response.json())
+        .then(data => {
+            alert("Data berhasil disimpan");
+        })
+        .catch(error => console.error('Error fetching data:', error));
 }
 
 function addNewTagToArrMenu() {

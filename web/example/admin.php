@@ -20,8 +20,8 @@ if ($_SESSION["role"] == 0) {
             <input id="srcbox" type="text" placeholder="search title, author, year, tag" style="width: 250px">
             <button id="srcbtn" onclick="searchBookad()">Search</button>
             <div id="sbook" style="display: flex; flex-direction:row;"></div>
-            <h2> all books (edit book + tag doesnt work)</h2>
-            <button onclick="addbook()">add</button>
+            <h2>all books (edit book doesnt work)</h2>
+            <button onclick="addbook()">modify</button>
             <div id="allbooks"></div>
             <p> page <button id="page" onclick="nextBooks()">1</button><button onclick="prevBooks()">prev</button></p>
             <br>
