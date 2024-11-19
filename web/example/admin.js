@@ -1,4 +1,4 @@
-const range = 1;
+const range = 2;
 var selected = [];
 var book_tag = [];
 
@@ -23,7 +23,7 @@ function showBooks() {
                 </div>
                 </a>
                 <button onclick=del(${cur_tag.id})>delete</button>
-                <button onclick=edi(${cur_tag.id})>edit</button>
+                <button onclick=edit(${cur_tag.id})>edit</button>
                 </div><br>`;
             }
             let s = Number(document.getElementById("page").innerText);
@@ -127,6 +127,72 @@ async function updateTagList() {
     redrawTag();
 }
 
+async function getBook(id) {
+    const res = fetch(`/api/get_book?id=${encodeURIComponent(id)}`)
+        .then(response => response.json())
+        .then(data => {return data})
+        .catch(error => console.error('Error fetching data:', error));
+    return res;
+}
+
+function submitEditBook(id) {
+    const title = document.getElementById("title").value;
+    const author = document.getElementById("author").value;
+    const year = document.getElementById("year").value;
+    const desc = document.getElementById("desc").value;
+    const cover = document.getElementById("cover").value;
+    let tags = selected[0];
+    for (let i = 1; i < selected.length; i++) {
+        tags += ` ${selected[i]}`;
+    }
+    fetch(`/api/edit_book?id=${encodeURIComponent(id)}&title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&desc=${encodeURIComponent(desc)}&tags=${encodeURIComponent(tags)}&year=${encodeURIComponent(year)}&img=${encodeURIComponent(cover)}`)
+        .then(response => response.json())
+        .then(data => {
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+async function edit(id) {
+    const book = await getBook(id);
+    const book_tag = await getTag();
+    const el = document.getElementById("addeditdiv");
+    el.innerHTML = `
+    <h3>Edit book</h3>
+    <input type="text" placeholder="title" id="title" value="${book.title}"><br>
+    <input type="text" placeholder="author" id="author" value="${book.author}"><br>
+    <input type="text" placeholder="year" id="year" value="${book.year}"><br>
+    <input type="text" placeholder="desc" id="desc" value="${book.desc}"><br>
+    <input type="text" placeholder="cover" id="cover" value="${book.cover}"><br>
+    <p id="selected-tag"></p>
+    <div id="tag-edit"></div>
+    <div id="tag-list"></div>
+    <button onclick="submitEditBook(${id})">submit</button>
+    `;
+
+    selected = [];
+    for (let i = 0; i < book.tags.length; i++) {
+        selected.push(book.tags[i].id);
+    }
+    const el2 = document.getElementById("tag-list");
+    for (let i = 0; i < book_tag.length; i++) {
+        const current_tag = book_tag[i];
+        el2.innerHTML += `
+        <button onclick="addTagToArr(${current_tag.id})">${current_tag.name}</button>
+        `; 
+    }
+    el2.innerHTML += `
+    <button onclick="addNewTagToArrMenu()">[ add new ]</button>
+    `;
+    el2.innerHTML += `
+    <button onclick="delTagToArrMenu()">[ del tag ]</button>
+    `;
+    el2.innerHTML += `
+    <button onclick="editTagMenu()">[ edit tag ]</button>
+    <div id="add-new"></div>`;
+    redrawTag();
+    updateTagList();
+}
+
 async function addbook() {
     book_tag = await getTag();
     const el = document.getElementById("addeditdiv");
@@ -141,6 +207,7 @@ async function addbook() {
     <div id="tag-list"></div>
     <button onclick="submitBook()">submit</button>
     `;
+    selected = [];
     const el2 = document.getElementById("tag-list");
     for (let i = 0; i < book_tag.length; i++) {
         const current_tag = book_tag[i];
@@ -268,6 +335,7 @@ function deltagfrom(id) {
 function redrawTag() {
     const sel = document.getElementById("selected-tag");
     sel.innerHTML = "";
+    console.log(selected);
     for (let i = 0; i < selected.length; i++) {
         for (let j = 0; j < book_tag.length; j++) {
             if (book_tag[j].id == selected[i]) {
