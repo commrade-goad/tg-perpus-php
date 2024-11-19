@@ -1,9 +1,7 @@
 # tg-perpus-php
+Project for Teori Graf
 
-## NOT YET
-### BACKEND
-- [x] add user
-- [x] edit user
-- [x] delete user
-- [x] id 0 always have to be `$simp_key`
-- [x] search
+## PROGRESS
+- [x] backend
+- [x] backend example usage
+- [ ] real front-end -> check the `frontend` branch
