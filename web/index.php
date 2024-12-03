@@ -1,1 +1,3 @@
-arah ke login
+<?php
+header('Location: /login');
+?>
