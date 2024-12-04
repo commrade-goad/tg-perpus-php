@@ -48,26 +48,25 @@
                 <div class="text-3xl font-semibold font-['Poppins']">Data Buku</div>
                 <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded text-lg font-semibold font-['Poppins']" onclick="openModal()">Add Book</button>
             </div>
-            <div class="p-4 flex justify-between items-center rounded text-gray-50" style="font-family: 'Poppins';">
-                <div>
-                    <label for="" class="mr-1">Tampilkan</label>
+            <div class="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 items-center rounded text-gray-50 justify-between" style="font-family: 'Poppins';">
+                <!-- <div>
+                    <label for="" class="block sm:inline mr-1">Tampilkan</label>
                     <input type="text" class="text-gray-900 pl-1">
-                </div>
+                </div> -->
                 <div>
-                    <label for="" class="mr-1">Search</label>
+                    <label for="" class="block sm:inline mr-1">Search</label>
                     <input type="text" class="text-gray-900 pl-1">
                 </div>
             </div>
-            <div class="p-4">
-                <table class="w-full table-auto" id="user-table-book">
+            <div class="p-4 overflow-x-auto">
+                <table class="w-full table-auto sm:table" id="user-table-book">
                   <thead>
-                    <tr class="bg-blue-700 text-gray-50" style="font-family: 'Poppins';">
-
-                      <th class="px-4 py-2 text-left">Judul</th>
-                      <th class="px-4 py-2 text-left">Pengarang</th>
-                      <th class="px-4 py-2 text-left">Tags</th>
-                      <th class="px-4 py-2 text-left">Tahun Terbit</th>
-                      <th class="px-4 py-2 text-left">Aksi</th>
+                    <tr class="bg-blue-700 text-gray-50 text-xs sm:text-sm md:text-base" style="font-family: 'Poppins';">
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Judul</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Pengarang</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Tags</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Tahun Terbit</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Aksi</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -86,7 +85,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="p-4 flex justify-between items-center rounded text-gray-50" style="font-family: 'Poppins';">
+              <div class="p-4 flex flex-col sm:flex-row justify-between items-center rounded text-gray-50" style="font-family: 'Poppins';">
                 <div>Menampilkan 0 Sampai -</div>
                 
                 <div>

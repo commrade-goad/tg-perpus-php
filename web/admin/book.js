@@ -56,7 +56,7 @@ function addBookToTable(book) {
         <td class="px-4 py-2">${tagNames}</td>
         <td class="px-4 py-2">${book.year || '-'}</td>
         <td class="px-4 py-2">
-            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2" onclick="editBook(${book.id})">Edit</button>
+            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2 mb-2" onclick="editBook(${book.id})">Edit</button>
             <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded" onclick="deleteBook(${book.id})">Delete</button>
         </td>
     </tr>
