@@ -49,7 +49,7 @@
                             <th class="px-4 py-2 text-left">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="user-table-body">
                     </tbody>
                 </table>
             </div>
@@ -89,80 +89,35 @@
         </div>
     </div>
 
+    <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden"> 
+    <div class="bg-white shadow-2xl rounded-lg w-1/2">
+        <div class="p-4">
+            <h2 class="text-lg font-semibold mb-4">Edit Anggota</h2>
+            <form id="edit-user-form">
+                <div class="mb-4">
+                    <label for="npm" class="text-gray-700">NPM</label>
+                    <input type="text" name="npm" id="npm" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="NPM" disabled>
+                </div>
+                <div class="mb-4">
+                        <label for="password" class="text-gray-700">Password</label>
+                        <input type="password" name="password" id="password-new" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Password" required>
+                    </div>
+                <div class="mb-4">
+                    <label for="type" class="text-gray-700">Tipe</label>
+                    <input type="text" name="type" id="typeed" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="type" disabled>
+                </div>
+                <div class="flex justify-end">
+                    <button type="button" id="batal" onclick="closeEditModal()" class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded mr-2">Batal</button>
+                    <button type="submit" id="submitEditAnggota" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
     
-    <script type="text/javascript">
-        function openModal() {
-            document.getElementById('modal').classList.remove('hidden');
-        }
-        
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-            $('#add-user-form')[0].reset(); // Reset the form fields
-        }
-        
-        $(document).ready(function() {
-            
-
-            $.ajax({
-                    type: "GET",
-                    url: "/api/get_user/",
-                    success: function(response) {
-                        // addUserToTable(formData);
-                        // closeModal();
-                        for (let i = 0; i < response.length; i++) {
-                                let tmp = response[i];
-                                addUserToTable(tmp);
-                                closeModal();
-                            }
-                    },
-                    error: function() {
-                        alert("Terjadi kesalahan. Silakan coba lagi.");
-                    }
-                });
-
-            $("#add-user-form").submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
-                
-                // Gather form data
-                var formData = {
-                    id: $("#id").val(),
-                    password: $("#password").val(),
-                    type: $("#type").val(),
-                };
-                
-                // AJAX request to add user
-                $.ajax({
-                    type: "GET",
-                    url: "/api/add_user/",
-                    data: formData,
-                    success: function(response) {
-                        console.log(formData);
-                        addUserToTable(formData);
-                        closeModal();
-                    },
-                    error: function() {
-                        alert("Terjadi kesalahan. Silakan coba lagi.");
-                    }
-                });
-            });
-        });
-        
-        function addUserToTable(user) {
-            const userRow = `
-            <tr class="border-b-2 border-blue-600 hover:bg-blue-500 text-gray-50">
-            <td class="px-4 py-2">${user.id}</td>
-            <td class="px-4 py-2">${user.type}</td>
-            <td class="px-4 py-2">
-            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2">Edit</button>
-            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded">Delete</button>
-            </td>
-            </tr>
-            `;
-            $('#user-table tbody').append(userRow); // Append new user row
-        }
-
-        
-        </script>
+<script src="anggota.js"></script>
 
 <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</div>
 <!-- <footer class="bg-blue-700 p-4 text-gray-50 text-center" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</footer> -->
