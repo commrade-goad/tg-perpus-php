@@ -28,17 +28,25 @@
             <div class="p-3" id="author">Author :</div>
             <div class="p-3" id="year">Tahun :</div>
             <div class="p-3">
-                <div class="bg-gray-600 text-center p-2 rounded-xl" id="tag">Tag</div>
+                <div class="p-2 rounded-xl" id="tag"></div>
+            </div>
+            <div class="p-3">Deskripsi :
+                <div class="mt-2" id="desc">desc</div>
             </div>
         </div>
     </div>
 
-    <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">© Copyright IF UKDC 2023</div>
+    <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">Â© Copyright IF UKDC 2023</div>
 </body>
 <script>
 
+    function teleport(where) {
+        window.location.href=`/dashboard/book.php?tag=${where}`;
+    }
+
         // Untuk timeout
         const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
+
         setTimeout(async () => {
             try {
                 const response = await fetch('/api/auth_destroy', { method: 'POST' });
@@ -62,9 +70,22 @@
                 document.getElementById('title').textContent = `Title: ${data.title}`;
                 document.getElementById('author').textContent = `Author: ${data.author}`;
                 document.getElementById('year').textContent = `Tahun: ${data.year}`;
+                const tg = document.getElementById('tag');
 
-                const tagNames = data.tags.map(tag => tag.name).join(', ');
-                document.getElementById('tag').textContent = tagNames;
+
+                for (let i = 0; i < data.tags.length; i++) {
+                    const cur_tag = data.tags[i];
+                tg.innerHTML += `
+                <button onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded m-1" data-id="${cur_tag.id}">${cur_tag.name}</button>
+                `;
+                console.log(data.tags[i].name);
+                }
+                // tags.forEach(tag => {
+                //     tc.innerHTML += `
+                //     <button type="button" class="tag-btn bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded m-1" data-id="${tag.id}">${tag.name}</button>
+                //     `;
+                // }              
+                document.getElementById('desc').textContent = data.desc;
 
             } catch (error) {
                 console.error("Error fetching book:", error);
