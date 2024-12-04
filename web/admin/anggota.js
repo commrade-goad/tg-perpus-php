@@ -105,6 +105,29 @@ $("#edit-user-form").submit(function(event) {
             loadUsers();
             
 
+                // Fungsi untuk menangani pencarian
+    $("#search").on("input", function() {
+        const searchQuery = $(this).val().toLowerCase(); // Ambil query pencarian dan ubah ke lowercase untuk pencarian tidak case-sensitive
+        filterUsers(searchQuery); // Menyaring data pengguna berdasarkan query
+    });
+
+    // Fungsi untuk memfilter data pengguna berdasarkan query
+    function filterUsers(query) {
+        const rows = $('#user-table-body tr'); // Ambil semua baris pengguna di tabel
+        rows.each(function() {
+            const row = $(this);
+            const npm = row.find('td').eq(0).text().toLowerCase(); // Ambil kolom NPM
+            const type = row.find('td').eq(1).text().toLowerCase(); // Ambil kolom Tipe
+
+            // Cek apakah NPM atau Type cocok dengan query
+            if (npm.includes(query) || type.includes(query)) {
+                row.show(); // Tampilkan baris yang cocok
+            } else {
+                row.hide(); // Sembunyikan baris yang tidak cocok
+            }
+        });
+    }
+
 
             $("#add-user-form").submit(function(event) {
                 event.preventDefault(); // Prevent default form submission
@@ -171,3 +194,4 @@ function deleteUser(userId) {
         });
     }
 }
+

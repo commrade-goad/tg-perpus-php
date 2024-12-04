@@ -27,6 +27,8 @@ function closeEditModal() {
     document.getElementById('editModal').classList.add('hidden');
 }
 
+
+
 // Menampilkan buku
 function loadBooks() {
     $.ajax({
@@ -67,6 +69,33 @@ function addBookToTable(book) {
 $(document).ready(function() {
     // Load initial data
     loadBooks();
+
+    // Fungsi untuk menangani pencarian
+$("#search").on("input", function() {
+    const searchQuery = $(this).val().toLowerCase(); // Ambil query pencarian dan ubah ke lowercase untuk pencarian tidak case-sensitive
+    filterBooks(searchQuery); // Menyaring data buku berdasarkan query
+});
+
+// Fungsi untuk memfilter data buku berdasarkan query
+function filterBooks(query) {
+    const rows = $('#user-table-book tbody tr'); // Ambil semua baris buku di tabel
+    rows.each(function() {
+        const row = $(this);
+        const title = row.find('td').eq(0).text().toLowerCase(); // Ambil kolom judul buku
+        const author = row.find('td').eq(1).text().toLowerCase(); // Ambil kolom pengarang
+        const tags = row.find('td').eq(2).text().toLowerCase(); // Ambil kolom tags (label buku)
+        const year = row.find('td').eq(3).text().toLowerCase(); // Ambil kolom tahun penerbitan
+
+        // Cek apakah title, author, tags, atau year cocok dengan query
+        if (title.includes(query) || author.includes(query) || tags.includes(query) || year.includes(query)) {
+            row.show(); // Tampilkan baris yang cocok
+        } else {
+            row.hide(); // Sembunyikan baris yang tidak cocok
+        }
+    });
+}
+
+    
     
     // Load tags
     $.ajax({
@@ -296,8 +325,6 @@ $("#edit_book").submit(function(event) {
         }
     });
 });
-
-
 
 function deleteBook(id) {
     if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {

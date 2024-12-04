@@ -24,24 +24,7 @@
                 <button type="submit" class="bg-blue-400 hover:bg-blue-600 text-gray-50 font-bold py-2 px-2 text-sm rounded">Logout</button>
             </form>
     </div>
-    <!-- <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center" style="font-family: 'Poppins';">Perpustakaan</header> -->
-    <!-- <div class="flex items-center justify-center p-2">
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Dashboard</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Anggota</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Peminjaman</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg text-gray-600 font-medium">Pengembalian</a>
-    </div> -->
-    <!-- <div class="bg-blue-400 p-4 flex justify-between items-center">
-        <!-- <div class=" text-gray-50 font-semibold text-lg" style="font-family: 'Poppins';">Selamat Datang Admin</div> -->
-        <!-- <div class="flex">
-            <div class="mr-2 font-semibold text-lg text-gray-50" style="font-family: 'Poppins';">Selamat Datang $user,</div>
-            <div class="mr-2 font-semibold text-lg text-gray-50" style="font-family: 'Poppins';">Tanggal</div>
-        </div>
-        <button class="bg-blue-500   hover:bg-blue-700 text-white px-4 py-2 rounded font-semibold font-['Poppins']">Logout</button> -->
-        <!-- <div  onclick="openProfil()" class="rounded-full w-24 h-24 flex items-center justify-center overflow-hidden cursor-pointer">
-                <img id="profilimg" src="/src/gambar2.jpg" class="w-full h-full  object-cover">
-        </div>
-    </div> --> 
+
     <section class="p-4">
         <div class="bg-blue-800 w-auto h-auto rounded-md">
             <div class="p-4 flex justify-between items-center rounded text-gray-50" style="font-family: 'Poppins';">
@@ -55,7 +38,7 @@
                 </div> -->
                 <div>
                     <label for="" class="block sm:inline mr-1">Search</label>
-                    <input type="text" class="text-gray-900 pl-1">
+                    <input type="text" id="search" class="text-gray-900 pl-1" placeholder="Search...">
                 </div>
             </div>
             <div class="p-4 overflow-x-auto">

@@ -37,7 +37,7 @@
             <div class="p-4 flex justify-between items-center rounded text-gray-50">
                 <div>
                     <label for="" class="mr-1">Search</label>
-                    <input type="text" class="text-gray-900 pl-1">
+                    <input type="text" id="search" class="text-gray-900 pl-1" placeholder="Search...">
                 </div>
             </div>
             <div class="p-4">
