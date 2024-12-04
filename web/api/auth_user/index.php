@@ -13,7 +13,7 @@ $password = null;
 check_and_create($db);
 header('Content-Type: application/json');
 
-// check session
+// Check session
 if (isset($_SESSION["id"]) || isset($_SESSION["role"])) {
     echo json_encode(["success" => 0, "message" => "Please logout first!"]);
     exit();
@@ -58,7 +58,7 @@ if ($insertStatement) {
             $role = $user["type"];
             $id = $user["id"];
 
-           // always set the user 0 pass to $simp_key
+            // Always set the user 0 pass to $simp_key
             if ($role == 1 && $id == 0) {
                 if (!password_verify($simp_key, $hashedPassword)) {
                     $updateStatement = $db->prepare("UPDATE user SET password = :pass WHERE id = 0");
@@ -80,7 +80,11 @@ if ($insertStatement) {
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['role'] = $role;
                 $_SESSION['id'] = $id;
-                echo json_encode(["success" => 1, "message" => "Login successful."]);
+                echo json_encode([
+                    "success" => 1,
+                    "message" => "Login successful.",
+                    "type" => $role // Mengembalikan type pengguna
+                ]);
             } else {
                 echo json_encode(["success" => 0, "message" => "Invalid password."]);
             }
