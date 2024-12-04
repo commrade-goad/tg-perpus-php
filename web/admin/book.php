@@ -61,7 +61,7 @@
             <div class="p-4 overflow-x-auto">
                 <table class="w-full table-auto sm:table" id="user-table-book">
                   <thead>
-                    <tr class="bg-blue-700 text-gray-50 text-xs sm:text-sm md:text-base" style="font-family: 'Poppins';">
+                    <tr class="bg-blue-700 text-gray-50 text-lg" style="font-family: 'Poppins';">
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Judul</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Pengarang</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Tags</th>
