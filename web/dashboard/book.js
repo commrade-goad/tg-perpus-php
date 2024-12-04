@@ -1,172 +1,139 @@
-var page = 1;
-var query_g = "";
+var page = 0;
+var data_len = 10;
+var gquery = 0;
+var max_page = 0;
 
-// Function to fetch books
-async function fetchBooks(from = 0, range = 1) {
-    try {
-        const response = await fetch(`/api/get_book?from=${from}&range=${range}&sort=ASC`);
-        const data = await response.json();
+// TODO: Make ?query or tag right so not broken when searching afterward
 
-        const booksContainer = document.getElementById('booksContainer');
-        booksContainer.innerHTML = '';
+function render_book(book_arr) {
+    const booksContainer = document.getElementById('booksContainer');
+    booksContainer.innerHTML = '';
+    book_arr.forEach(book => {
+        const bookElement = document.createElement('div');
+        bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
 
-        data.forEach(book => {
-            const bookElement = document.createElement('div');
-            bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
+        const coverImage = book.cover || '/src/cover.jpg';
 
-            const coverImage = book.cover || '/src/cover.jpg';
+        bookElement.innerHTML = `
+        <a href="book_detail.php?id=${book.id}">
+        <div class="flex flex-col items-center text-center" book_id="${book.id}" id="sendThis">
+        <div class="w-50 h-50">
+        <img src="${coverImage}" alt="Cover Book" class="w-full h-full object-cover rounded-lg mb-2">
+        </div>
+        <div class="text-lg font-semibold judul">${book.title}</div>
+        <div class="text-sm text-gray-500 author">${book.author}</div>
+        </div>
+        </a>
+        `;
 
-            bookElement.innerHTML = `
-                <a href="book_detail.php?id=${book.id}">
-                    <div class="flex flex-col items-center text-center" book_id="${book.id}" id="sendThis">
-                        <div class="w-50 h-50">
-                            <img src="${coverImage}" alt="Cover Book" class="w-full h-full object-cover rounded-lg mb-2">
-                        </div>
-                        <div class="text-lg font-semibold judul">${book.title}</div>
-                        <div class="text-sm text-gray-500 author">${book.author}</div>
-                    </div>
-                </a>
-            `;
+        booksContainer.appendChild(bookElement);
+    });
+}
 
-            booksContainer.appendChild(bookElement);
+async function fetch_book(from, range) {
+    const b = await fetch(`/api/get_book_count`).then(r => r.json());
+    const a = fetch(`/api/get_book?from=${from}&range=${range}`)
+    .then(response => response.json())
+    .then(data => {
+        render_book(data);
+        max_page = b.count;
+    })
+    .catch(error => console.log(error));
+}
+
+async function fetch_search_book(query, from, range) {
+    gquery = query;
+    const c = await fetch(`/api/search?q=${encodeURIComponent(gquery)}`).then(r => r.json());
+    const a = fetch(`/api/search?q=${encodeURIComponent(gquery)}&from=${from}&range=${range}`)
+    .then(response => response.json())
+    .then(data => {
+        let new_arr = [];
+        data.forEach(element => {
+            new_arr.push(element.book);
         });
-
-    } catch (error) {
-        console.error("Error fetching books:", error);
-    }
-}
-
-// Function to get search result count
-async function searchBooksCount(query) {
-    const response = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-    if (!response.ok) {
-        throw new Error("Gagal mencari buku");
-    }
-    const data = await response.json();
-    return data.length;
-}
-
-// Function to search books
-async function searchBooks(query, from, range) {
-    query_g = query; // Ensure query_g is updated
-    try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&from=${from}&range=${range}`);
-        if (!response.ok) {
-            throw new Error("Gagal mencari buku");
-        }
-
-        const data = await response.json();
-        const booksContainer = document.getElementById('booksContainer');
-        booksContainer.innerHTML = '';
-
-        if (data.length === 0) {
+        max_page = c.length;
+        if (data.length <= 0) {
+            const booksContainer = document.getElementById('booksContainer');
+            booksContainer.innerHTML = '';
             booksContainer.innerHTML = `
-                <div class="flex text-center text-white text-lg items-center">
-                    Tidak ada buku yang ditemukan untuk pencarian "${query}".
-                </div>`;
+            <div class="flex text-center text-white text-lg items-center">
+            Tidak ada buku yang ditemukan untuk pencarian "${gquery}".
+            </div>`;
             return;
         }
-
-        data.forEach(result => {
-            const book = result.book;
-            const bookElement = document.createElement('div');
-            bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
-
-            const coverImage = book.cover || '/src/cover.jpg';
-
-            bookElement.innerHTML = `
-                <a href="/dashboard/book_detail.php?id=${book.id}" class="flex flex-col items-center text-center">
-                    <div class="w-50 h-50">
-                        <img src="${coverImage}" alt="Cover Book" class="w-full h-full object-cover rounded-lg mb-2">
-                    </div>
-                    <div class="text-lg font-semibold judul">${book.title}</div>
-                    <div class="text-sm text-gray-500 author">${book.author}</div>
-                </a>
-            `;
-
-            booksContainer.appendChild(bookElement);
-        });
-
-    } catch (error) {
-        console.error("Error searching books:", error);
-    }
+        render_book(new_arr);
+    })
+    .catch(error => console.log(error));
 }
 
-// Handle search input and button click
-function handleSearchClick() {
+function do_search() {
     const query = document.getElementById('searchInput').value.trim();
     if (query) {
-        query_g = query;
-        searchBooks(query_g, page * 1, 1);
+        gquery = query;
+        fetch_search_book(gquery, page * data_len, data_len);
     }
 }
 
-// Search input event listener
-document.getElementById('searchInput').addEventListener('input', (event) => {
-    const query = event.target.value.trim();
-    if (query) {
-        query_g = query;
-        searchBooks(query_g, page * 1, 1);
-    } else {
-        query_g = "";
-        fetchBooks();
-    }
-});
-
-// On page load
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    query_g = urlParams.get('search') || urlParams.get('tag') || "";
+    gquery = urlParams.get('query') || urlParams.get('tag') || "";
 
-    if (query_g) {
-        document.getElementById('searchInput').value = query_g;
-        searchBooks(query_g, page * 1, 1);
+    if (gquery) {
+        document.getElementById('searchInput').value = gquery;
+        fetch_search_book(gquery, page * data_len, data_len);
     } else {
-        fetchBooks();
+        if (page <= 0) {
+            fetch_book(page, data_len);
+        } else {
+            fetch_book(page * data_len, data_len);
+        }
     }
 });
 
-// Pagination controls
+let debounceTimeout;
+document.getElementById('searchInput').addEventListener('change', () => {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(() => {
+        const query = document.getElementById('searchInput').value.trim();
+        if (query === "") {
+            if (page <= 0) {
+                fetch_book(page, data_len);
+            } else {
+                fetch_book(page * data_len, data_len);
+            }
+        } else {
+            do_search();
+        }
+    }, 400); // Adjust debounce time as needed
+});
+
 const prev_button = document.getElementById("prev");
 const refresh = document.getElementById("curr");
 const next_button = document.getElementById("next");
 
-prev_button.addEventListener("click", function () {
-    if (page > 1) {
-        page -= 1;
-        refresh.innerHTML = page;
-        const from = (page - 1) * 1;
-        if (query_g) {
-            searchBooks(query_g, from, 1);
+next_button.addEventListener("click", () => {
+    if (page + 1 * data_len < max_page) {
+        page += 1;
+        if (gquery === "") {
+            fetch_book(page * data_len, data_len);
         } else {
-            fetchBooks(from, 1);
+            fetch_search_book(gquery, page * data_len, data_len);
         }
-    }
+        refresh.innerHTML = page + 1;
+    }   
 });
 
-next_button.addEventListener("click", async function () {
-    try {
-        const response = await fetch(`/api/get_book_count`);
-        const data = await response.json();
-        let totalBooks = data.count;
-
-        if (query_g) {
-            totalBooks = await searchBooksCount(query_g);
+prev_button.addEventListener("click", () => {
+    if (page > 0) {
+        page -= 1;
+        if (gquery === "") {
+            fetch_book(page * data_len, data_len);
+        } else {
+            fetch_search_book(gquery, page * data_len, data_len);
         }
-
-        if (page < Math.ceil(totalBooks / 1)) {
-            page += 1;
-            refresh.innerHTML = page;
-            const from = (page - 1) * 1;
-
-            if (query_g) {
-                await searchBooks(query_g, from, 1);
-            } else {
-                await fetchBooks(from, 1);
-            }
-        }
-    } catch (error) {
-        console.error("Error in pagination:", error);
-    }
+        refresh.innerHTML = page + 1;
+    }   
 });
 
+// fetch_book(0, 10);
+// fetch_search_book("cpp", 0, 2);
