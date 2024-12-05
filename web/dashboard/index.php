@@ -34,7 +34,8 @@ $_SESSION['LAST_ACTIVITY'] = time();
 </head>
 <body>
 
-<div class="bg-yellow-500 font-bold font-['Poppins'] text-center text-4xl p-5 border-b-4 flex items-center justify-between">
+<body class="bg-blue-600">
+<div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
         <div class="flex-1 text-white text-4xl text-center">
             PERPUSTAKAAN UKDC
         </div>
@@ -42,7 +43,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
     <div class="bg-blue-600 font-bold p-5 text-right">
         <form action="/dashboard/logout.php" method="POST">
-            <button type="submit" class="bg-white text-blue-500 font-bold py-2 px-2 text-sm rounded">Logout</button>
+        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-gray-50 font-bold py-2 px-2 text-sm rounded">Logout</button>
         </form>
     </div>
 

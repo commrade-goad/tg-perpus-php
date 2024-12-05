@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="bg-yellow-500 font-bold text-center text-4xl p-5 border-b-4 flex items-center justify-between">
+<body class="bg-blue-600">
+<div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
         <div class="flex-1 text-white text-4xl text-center">
             PERPUSTAKAAN UKDC
         </div>
@@ -17,7 +17,7 @@
 
     <div class="bg-blue-600 font-bold p-5 text-right">
         <form action="/dashboard/logout.php" method="POST">
-            <button type="submit" class="bg-white text-blue-500 font-bold py-2 px-2 text-sm rounded">Logout</button>
+        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-gray-50 font-bold py-2 px-2 text-sm rounded">Logout</button>
         </form>
     </div>
 
@@ -27,8 +27,8 @@
             <div class="p-3" id="title">Title :</div>
             <div class="p-3" id="author">Author :</div>
             <div class="p-3" id="year">Tahun :</div>
-            <div class="p-3">
-                <div class="p-2 rounded-xl" id="tag"></div>
+            <div class="p-3 flex flex-wrap gap-4 items-center">
+                <div class="flex flex-wrap gap-2" id="tag"></div>
             </div>
             <div class="p-3">Deskripsi :
                 <div class="mt-2" id="desc">desc</div>
@@ -36,7 +36,7 @@
         </div>
     </div>
 
-    <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">Â© Copyright IF UKDC 2023</div>
+    <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">© Copyright IF UKDC 2023</div>
 </body>
 <script>
 
@@ -76,15 +76,10 @@
                 for (let i = 0; i < data.tags.length; i++) {
                     const cur_tag = data.tags[i];
                 tg.innerHTML += `
-                <button onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded m-1" data-id="${cur_tag.id}">${cur_tag.name}</button>
+                <div onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-700 text-white pb-2 pl-2 pr-2 rounded item-center text-center" data-id="${cur_tag.id}">${cur_tag.name}</div>
                 `;
                 console.log(data.tags[i].name);
-                }
-                // tags.forEach(tag => {
-                //     tc.innerHTML += `
-                //     <button type="button" class="tag-btn bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded m-1" data-id="${tag.id}">${tag.name}</button>
-                //     `;
-                // }              
+                }           
                 document.getElementById('desc').textContent = data.desc;
 
             } catch (error) {

@@ -30,19 +30,18 @@ $_SESSION['LAST_ACTIVITY'] = time();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <script src="https://cdn.tailwindcss.com"></script>
     </head>
-    <body>
-
-        <div class="bg-yellow-500 font-bold text-center text-4xl p-5 border-b-4 flex items-center justify-between">
-            <div class="flex-1 text-white text-4xl text-center">
-                PERPUSTAKAAN UKDC
-            </div>
+    <body class="bg-blue-600">
+<div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
+        <div class="flex-1 text-white text-4xl text-center">
+            PERPUSTAKAAN UKDC
         </div>
+    </div>
 
-        <div class="bg-blue-600 font-bold p-5 text-right">
-            <form action="/dashboard/logout.php" method="POST">
-                <button type="submit" class="bg-white text-blue-500 font-bold py-2 px-2 text-sm rounded">Logout</button>
-            </form>
-        </div>
+    <div class="bg-blue-600 font-bold p-5 text-right">
+        <form action="/dashboard/logout.php" method="POST">
+        <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-gray-50 font-bold py-2 px-2 text-sm rounded">Logout</button>
+        </form>
+    </div>
 
         <div class="bg-blue-600 flex p-3 justify-center items-center ">
             <input type="text" id="searchInput" class="bg-blue-300 text-white w-1/2 p-2 text-xl rounded-xl 
