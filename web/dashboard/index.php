@@ -52,7 +52,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <div class="text-gray-50 text-2xl p-3">
                 <h1 class="text-2xl font-semibold font-['Poppins']">Welcome, <?php echo htmlspecialchars($_SESSION['id']); ?>!</h1>
             </div>
-            <h1 class="pb-5 text-4xl font-semibold font-['Poppins'] text-gray-50 ">Mau cari buku 
+            <h1 class="pb-5 text-4xl font-semibold font-['Poppins'] text-gray-50">Mau cari buku apa? </h1>
             <form action="/dashboard/book.php" method="GET" class="flex justify-center w-full items-center" onsubmit="return handleSearch()">
                 <div class="flex justify-center items-center w-full">
                     <label for="search" class="sr-only"></label>
@@ -72,7 +72,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
         </div>
     </div>
 
-    <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">© Copyright IF UKDC 2023</div>
+    <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">Licensed with GNU GPL v2.0</div>
 
 </body>
     <script>

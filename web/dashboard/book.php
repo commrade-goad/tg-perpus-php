@@ -32,7 +32,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     </head>
     <body class="bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center">
+        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/dashboard/index.php'">
             PERPUSTAKAAN UKDC
         </div>
     </div>
@@ -65,7 +65,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
         </div>
 
-        <div class="bg-blue-600 font-bold text-center text-2xl p-5 border-t-4 text-white font-['Poppins']">© Copyright IF UKDC 2023</div>
+        <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">Licensed with GNU GPL v2.0</div>
 
         <script>
         // Ini untuk API Timeout

@@ -8,6 +8,8 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+$user = $_SESSION['id'];
+
 if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     header('Location: /dashboard/index.php');
 }
@@ -81,6 +83,6 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     </div>
 
     
-<div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:50.5vh";>© Copyright IF UKDC 2023</div>
+<div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>Licensed with GNU GPL v2.0</div>
 </body>
 </html> 

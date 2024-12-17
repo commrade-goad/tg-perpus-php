@@ -8,6 +8,8 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+$user = $_SESSION['id'];
+
 if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     header('Location: /dashboard/index.php');
 }
@@ -25,7 +27,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 </head>
 <body class="bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center">
+        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/admin'">
             PERPUSTAKAAN UKDC
         </div>
     </div>
@@ -195,7 +197,8 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 // </script>
 
 
-<div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</div>
+        <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>Licensed with GNU GPL v2.0</div>
+
     <!-- <footer class="bg-blue-700 p-4 text-gray-50 text-center" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</footer> -->
 
     

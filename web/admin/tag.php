@@ -8,6 +8,8 @@ if (!isset($_SESSION['id'])) {
     exit();
 }
 
+$user = $_SESSION['id'];
+
 if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     header('Location: /dashboard/index.php');
 }
@@ -22,23 +24,31 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body class="font-poppins">
-        <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center" style="font-family: 'Poppins';">
+<body class="font-poppins bg-blue-600">
+    <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
+        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/admin'">
+            PERPUSTAKAAN UKDC
+        </div>
+    </div>
+        <!-- <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center" style="font-family: 'Poppins';">
             Perpustakaan
-        </header>
-    <!-- <div class="flex items-center justify-center p-2">
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Dashboard</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Anggota</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg mr-3 text-gray-600 font-medium">Peminjaman</a>
-        <a href="#" class="p-3 bg-blue-300 rounded-lg text-gray-600 font-medium">Pengembalian</a>
-    </div> -->
-    <div class="bg-blue-400 p-4 flex items-center">
+        </header> -->
+        <div class="bg-blue-800 p-4 flex justify-between items-center">
+            <div class="flex">
+                <div class="mr-2 font-semibold text-lg text-gray-50">Selamat Datang <?php echo htmlspecialchars($user); ?>,</div>
+                <div class="mr-2 font-semibold text-lg text-gray-50"><?php echo date("d F Y"); ?></div>
+            </div>
+            <form action="/dashboard/logout.php" method="POST">
+                <button type="submit" class="bg-blue-400 text-gray-50 hover:bg-blue-600 font-bold py-2 px-2 text-sm rounded">Logout</button>
+            </form>
+        </div>
+    <!-- <div class="bg-blue-400 p-4 flex items-center">
             <div class="flex">
                 <div class="mr-2 font-semibold text-lg text-gray-50" style="font-family: 'Poppins';">Selamat Datang <?php echo $_SESSION['id']?>!,</div>
                 <div class="mr-2 font-semibold text-lg text-gray-50" style="font-family: 'Poppins';">
                     Tanggal : <?php echo date("l, j F Y"); ?></div>
             </div>
-        </div>
+        </div> -->
 
     <section class="p-4">
         <div class="bg-blue-700 w-auto h-auto rounded-md p-2">
@@ -105,7 +115,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
         </div>
     </div>
         <script src="tag.js"></script>
-    <footer class="bg-blue-700 p-4 text-gray-50 text-center" style="font-family: 'Poppins'; margin-top:31vh";>© Copyright IF UKDC 2023</footer>
+        <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>Licensed with GNU GPL v2.0</div>
 
 </body>
 </html> 
