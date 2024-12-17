@@ -19,24 +19,24 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = (int)htmlspecialchars($_GET["id"]);
+if (isset($_POST["id"])) {
+    $id = (int)$_POST["id"];
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();
 }
 
-if (isset($_GET["name"])) {
-    $name = htmlspecialchars($_GET["name"]);
+if (isset($_POST["name"])) {
+    $name = $_POST["name"];
 }
 
 if ($name == "") {
-    echo json_encode(["error" => "Not Valid!"]);
+    echo json_encode(["error" => "Not a valid name!"]);
     exit();
 }
 
-if (isset($_GET["img"])) {
-    $img = htmlspecialchars($_GET["img"]);
+if (isset($_POST["img"])) {
+    $img = $_POST["img"];
 }
 
 $insertStatement = $db->prepare("UPDATE all_tags set name = :name, img = :img where tags_id = :tag");

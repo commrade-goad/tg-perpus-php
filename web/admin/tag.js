@@ -31,40 +31,61 @@ function cleanup_tag() {
 }
 
 async function rem_tag(id) {
-    const a = fetch(`/api/del_tag?id=${id}`)
-    .then(res => res.json())
-    .then(_ => {
-        alert(`Deleted Tag ${id}`);
-        cleanup_tag();
-        fetch_tags(gen_from(), range);
-    })
-    .catch(
-        error => alert(`Failed to delete tag with the id :${id}`)
-    );
-}
+    const formData = new URLSearchParams();
+    formData.append("id", id);
 
-async function add_tag(name, cover){
-    const a = fetch(`/api/add_tag?name=${encodeURIComponent(name)}&img=${encodeURIComponent(cover)}`)
+    fetch(`/api/del_tag`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    })
+        .then(res => res.json())
+        .then(data => {
+            alert(`Deleted tag ${id}`);
+            cleanup_tag();
+            fetch_tags(gen_from(), range);
+        })
+        .catch(
+            error => alert(`Failed to delete tag with the id :${id}`)
+        );
+}
+async function add_tag(name, cover) {
+    const formData = new URLSearchParams();
+    formData.append("name", name);
+    formData.append("img", cover);
+
+    fetch(`/api/add_tag`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    })
     .then(res => res.json())
     .then(data => {
         alert("Tag Added");
         cleanup_tag();
         fetch_tags(gen_from(), range);
     })
-    .catch(error => alert("Failed to add new tag!"))
+    .catch(error => alert("Failed to add new tag!"));
 }
 
-async function edit_tag_real(id, name, img) {
-    console.log(name);
-    console.log(img);
-    const a = fetch(`/api/edit_tag?id=${encodeURIComponent(id)}&name=${encodeURIComponent(name)}&img=${encodeURIComponent(img)}`)
+async function edit_tag_real(id, name, cover) {
+    const formData = new URLSearchParams();
+    formData.append("id", id);
+    formData.append("name", name);
+    formData.append("img", cover);
+
+    fetch(`/api/edit_tag`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: formData.toString()
+    })
     .then(res => res.json())
     .then(data => {
-        alert("Tag Edited");
+        alert(`Tag with id ${id} Edited`);
         cleanup_tag();
         fetch_tags(gen_from(), range);
     })
-    .catch(error => alert("Failed to edit tag!"))
+    .catch(error => alert(`Failed to edit tag ${id}!`));
 }
 
 async function get_tag_count() {

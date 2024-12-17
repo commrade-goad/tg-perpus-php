@@ -16,15 +16,15 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] !=
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = (int)$_GET["id"];
+if (isset($_POST["id"])) {
+    $id = (int)$_POST["id"];
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();
 }
 
-if (isset($_GET["password"])) {
-    $password = $_GET["password"];
+if (isset($_POST["password"])) {
+    $password = $_POST["password"];
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();

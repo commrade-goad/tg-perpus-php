@@ -34,7 +34,7 @@ function check_exist(SQLite3 &$db, string $name) {
 function create_table_book(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE book (
-        book_id INTEGER PRIMARY KEY,
+        book_id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
         author TEXT,
         desc TEXT,
@@ -50,7 +50,7 @@ function create_table_book(SQLite3 &$db) {
 function create_table_book_tags(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE book_tags (
-        btag_id TEXT PRIMARY KEY,
+        btag_id TEXT PRIMARY KEY AUTOINCREMENT,
         book_id INTEGER,
         tags_id INTEGER,
         FOREIGN KEY (book_id) REFERENCES book(book_id),
@@ -65,7 +65,7 @@ function create_table_book_tags(SQLite3 &$db) {
 function create_table_all_tags(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE all_tags (
-        tags_id INTEGER PRIMARY KEY,
+        tags_id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT,
         img TEXT
         )";
@@ -78,7 +78,7 @@ function create_table_all_tags(SQLite3 &$db) {
 function create_table_user(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE user(
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         password TEXT,
         type INTEGER
         )";

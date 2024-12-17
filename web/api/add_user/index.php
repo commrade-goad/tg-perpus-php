@@ -18,15 +18,15 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = htmlspecialchars($_GET["id"]);
+if (isset($_POST["id"])) {
+    $id = htmlspecialchars($_POST["id"]);
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();
 }
 
-if (isset($_GET["password"])) {
-    $pass = htmlspecialchars($_GET["password"]);
+if (isset($_POST["password"])) {
+    $pass = htmlspecialchars($_POST["password"]);
 }
 
 if ($pass == "") {
@@ -34,8 +34,8 @@ if ($pass == "") {
     exit();
 }
 
-if (isset($_GET["type"])) {
-    $type = htmlspecialchars($_GET["type"]);
+if (isset($_POST["type"])) {
+    $type = htmlspecialchars($_POST["type"]);
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();

@@ -58,7 +58,7 @@ $("#edit-user-form").submit(function(event) {
 
     // Mengirim data ke server untuk diperbarui
     $.ajax({
-        type: "GET",  // Gunakan POST untuk update
+        type: "POST",  // Gunakan POST untuk update
         url: `/api/edit_user/${currentUserId}`, // Ganti dengan endpoint yang benar untuk memperbarui data pengguna
         data: formData,
         success: function(response) {
@@ -141,7 +141,7 @@ $("#edit-user-form").submit(function(event) {
                 
                 // AJAX request to add user
                 $.ajax({
-                    type: "GET",
+                    type: "POST",
                     url: "/api/add_user/",
                     data: formData,
                     success: function(response) {
@@ -175,7 +175,7 @@ $("#edit-user-form").submit(function(event) {
 function deleteUser(userId) {
     if (confirm("Apakah Anda yakin ingin menghapus pengguna ini?")) {
         $.ajax({
-            type: "GET", // Menggunakan POST jika DELETE tidak diizinkan
+            type: "POST", // Menggunakan POST jika DELETE tidak diizinkan
             url: `/api/del_user`, // Endpoint penghapusan user
             data: { id: userId }, // Kirim data ID user
             success: function(response) {

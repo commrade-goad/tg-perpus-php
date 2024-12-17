@@ -16,8 +16,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = htmlspecialchars($_GET["id"]);
+if (isset($_POST["id"])) {
+    $id = htmlspecialchars($_POST["id"]);
 } else {
     echo json_encode(["error" => "Not Valid!"]);
     exit();
