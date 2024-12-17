@@ -87,5 +87,5 @@ settimeout(async () => {
     }
 }, timeoutduration * 1000);
     </script>
-    <script src="script.js"></script>
+    <script src="/dashboard/script.js"></script>
 </html>

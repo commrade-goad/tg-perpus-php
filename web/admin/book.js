@@ -174,7 +174,7 @@ function filterBooks(query) {
         
         // AJAX request to add book
         $.ajax({
-            type: "GET", // Menggunakan GET sesuai dengan API
+            type: "POST", // Menggunakan GET sesuai dengan API
             url: "/api/add_book/",
             data: formData,
             success: function(response) {
@@ -312,8 +312,8 @@ $("#edit_book").submit(function(event) {
 
     // AJAX request to update book
     $.ajax({
-        type: "GET",
-        url: `/api/edit_book/${currentBookId}`, // Use 'id' for URL
+        type: "POST",
+        url: `/api/edit_book`,
         data: formData,
         success: function(response) {
             loadBooks(); // Reload books
@@ -327,10 +327,12 @@ $("#edit_book").submit(function(event) {
 });
 
 function deleteBook(id) {
+    const formData = {id: id};
     if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {
         $.ajax({
-            type: "GET", // Sesuaikan dengan method API
-            url: `/api/del_book?id=${id}`,
+            type: "POST",
+            url: `/api/del_book`,
+            data: formData,
             success: function(response) {
                 alert("Buku berhasil dihapus!");
                 loadBooks();

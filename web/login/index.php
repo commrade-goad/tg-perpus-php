@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+if (isset($_SESSION["id"]) && isset($_SESSION["role"])) {
+    header("Location: /dashboard");
+    exit;
+}
+
+unset($_SESSION["id"]);
+unset($_SESSION["role"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +90,7 @@
             formData.append("password", password);
 
             try {
-                const response = await fetch(`/api/auth_user?id=${id}&password=${password}`, {
+                const response = await fetch(`/api/auth_user`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'

@@ -22,7 +22,7 @@
     </div>
 
     <div class="bg-blue-600 p-3 flex">
-        <img src="/src/cover.jpg" alt="Cover">
+        <img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[400px] aspect-[3/4]">
         <div class="p-3 text-3xl text-white">
             <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
             <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
@@ -70,6 +70,7 @@
                 document.getElementById('title').textContent = `${data.title}`;
                 document.getElementById('author').textContent = `${data.author}`;
                 document.getElementById('year').textContent = `${data.year}`;
+                document.getElementById('book-cover').src = `${data.cover}`;
                 const tg = document.getElementById('tag');
 
 

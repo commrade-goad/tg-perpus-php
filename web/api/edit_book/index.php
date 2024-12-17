@@ -25,8 +25,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
 
 // =======================
 
-if (isset($_GET["id"])) {
-    $tmp_id = $_GET["id"];
+if (isset($_POST["id"])) {
+    $tmp_id = $_POST["id"];
     $id = (int)$tmp_id;
 } else {
     echo json_encode(["error" => "Need a tag id!"]);
@@ -35,8 +35,8 @@ if (isset($_GET["id"])) {
 
 // =======================
 
-if (isset($_GET["title"])) {
-    $title = htmlspecialchars($_GET["title"]);
+if (isset($_POST["title"])) {
+    $title = $_POST["title"];
 }
 
 if ($title == "") {
@@ -46,8 +46,8 @@ if ($title == "") {
 
 // =======================
 
-if (isset($_GET["author"])) {
-    $author = htmlspecialchars($_GET["author"]);
+if (isset($_POST["author"])) {
+    $author = $_POST["author"];
 }
 
 if ($author == "") {
@@ -57,8 +57,8 @@ if ($author == "") {
 
 // =======================
 
-if (isset($_GET["desc"])) {
-    $desc = htmlspecialchars($_GET["desc"]);
+if (isset($_POST["desc"])) {
+    $desc = $_POST["desc"];
 }
 
 if ($desc == "") {
@@ -68,15 +68,15 @@ if ($desc == "") {
 
 // =======================
 
-if (isset($_GET["tags"])) {
-    $tmp = htmlspecialchars($_GET["tags"]);
+if (isset($_POST["tags"])) {
+    $tmp = $_POST["tags"];
     $tags = preg_split('/\s+/', $tmp);
 }
 
 // =======================
 
-if (isset($_GET["year"])) {
-    $year = htmlspecialchars($_GET["year"]);
+if (isset($_POST["year"])) {
+    $year = $_POST["year"];
 }
 
 if ($year == "") {
@@ -86,8 +86,8 @@ if ($year == "") {
 
 // =======================
 
-if (isset($_GET["img"])) {
-    $cover = htmlspecialchars($_GET["img"]);
+if (isset($_POST["img"])) {
+    $cover = $_POST["img"];
 }
 
 // =======================

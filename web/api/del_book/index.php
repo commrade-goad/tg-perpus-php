@@ -17,8 +17,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = (int)$_GET["id"];
+if (isset($_POST["id"])) {
+    $id = (int)$_POST["id"];
 }
 
 if ($id == null) {
