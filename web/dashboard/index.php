@@ -32,8 +32,6 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <script src="https://cdn.tailwindcss.com"></script>
 
 </head>
-<body>
-
 <body class="bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
         <div class="flex-1 text-white text-4xl text-center">

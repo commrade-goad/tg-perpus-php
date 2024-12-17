@@ -50,7 +50,7 @@ function create_table_book(SQLite3 &$db) {
 function create_table_book_tags(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE book_tags (
-        btag_id TEXT PRIMARY KEY AUTOINCREMENT,
+        btag_id TEXT PRIMARY KEY,
         book_id INTEGER,
         tags_id INTEGER,
         FOREIGN KEY (book_id) REFERENCES book(book_id),

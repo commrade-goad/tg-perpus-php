@@ -19,15 +19,15 @@ if (isset($_SESSION["id"]) || isset($_SESSION["role"])) {
     exit();
 }
 
-if (isset($_GET["id"])) {
-    $id = $_GET["id"];
+if (isset($_POST["id"])) {
+    $id = $_POST["id"];
 } else {
     echo json_encode(["success" => 0, "message" => "User ID is required."]);
     exit();
 }
 
-if (isset($_GET["password"])) {
-    $password = $_GET["password"];
+if (isset($_POST["password"])) {
+    $password = $_POST["password"];
 } else {
     echo json_encode(["success" => 0, "message" => "Password is required."]);
     exit();

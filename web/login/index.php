@@ -74,12 +74,17 @@
             const id = npmInput.value;
             const password = passwordInput.value;
 
+            const formData = new URLSearchParams();
+            formData.append("id", id);
+            formData.append("password", password);
+
             try {
                 const response = await fetch(`/api/auth_user?id=${id}&password=${password}`, {
-                    method: 'GET',
+                    method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json'
-                    }
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: formData.toString()
                 });
                 
                 if (!response.ok) {
