@@ -118,7 +118,7 @@
 15. `get_user` (admin access) - POST or GET
 
     - accept : none
-    - usage  : `localhost/api/get_user?from=0&range=20`
+    - usage  : `localhost/api/get_user`
     - return : user json
 
 16. `search` - GET
