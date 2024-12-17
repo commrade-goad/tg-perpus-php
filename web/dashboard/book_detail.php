@@ -24,14 +24,14 @@
     <div class="bg-blue-600 p-3 flex">
         <img src="/src/cover.jpg" alt="Cover">
         <div class="p-3 text-3xl text-white">
-            <div class="p-3" id="title">Title :</div>
-            <div class="p-3" id="author">Author :</div>
-            <div class="p-3" id="year">Tahun :</div>
-            <div class="p-3 flex flex-wrap gap-4 items-center">
-                <div class="flex flex-wrap gap-2" id="tag"></div>
+            <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
+            <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
+            <div class="p-3 text-xl italic" id="year"></div>
+            <div class="p-3 flex flex-wrap gap-4 items-center font-bold">
+                <div class="flex flex-wrap gap-2 text-base" id="tag"></div>
             </div>
-            <div class="p-3">Deskripsi :
-                <div class="mt-2" id="desc">desc</div>
+            <div class="p-3">
+                <div class="mt-1 text-xl" id="desc">desc</div>
             </div>
         </div>
     </div>
@@ -67,16 +67,16 @@
 
                 const data = await response.json();
 
-                document.getElementById('title').textContent = `Title: ${data.title}`;
-                document.getElementById('author').textContent = `Author: ${data.author}`;
-                document.getElementById('year').textContent = `Tahun: ${data.year}`;
+                document.getElementById('title').textContent = `${data.title}`;
+                document.getElementById('author').textContent = `${data.author}`;
+                document.getElementById('year').textContent = `${data.year}`;
                 const tg = document.getElementById('tag');
 
 
                 for (let i = 0; i < data.tags.length; i++) {
                     const cur_tag = data.tags[i];
                 tg.innerHTML += `
-                <div onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-700 text-white pb-2 pl-2 pr-2 rounded item-center text-center" data-id="${cur_tag.id}">${cur_tag.name}</div>
+                <div onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-700 text-white p-2 pt-1 pb-1 rounded item-center text-center" data-id="${cur_tag.id}">${cur_tag.name}</div>
                 `;
                 console.log(data.tags[i].name);
                 }           
