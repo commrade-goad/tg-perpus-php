@@ -71,11 +71,13 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                 </table>
             </div>
             <div class="p-4 flex justify-between items-center rounded text-gray-50">
-                <div>Menampilkan 0 Sampai -</div>
+                <!-- <div>Menampilkan 0 Sampai -</div> -->
                 <div>
                     <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded mr-2">Sebelumnya</button>
-                    <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded">Selanjutnya</button>
                 </div>
+                    <div>
+                        <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded">Selanjutnya</button>
+                    </div>
             </div>
         </div>
     </section>

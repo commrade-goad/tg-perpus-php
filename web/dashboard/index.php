@@ -56,7 +56,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
             <form action="/dashboard/book.php" method="GET" class="flex justify-center w-full items-center" onsubmit="return handleSearch()">
                 <div class="flex justify-center items-center w-full">
                     <label for="search" class="sr-only"></label>
-                    <input type="text" name="search" id="search" class="bg-blue-300 w-full p-2 text-lg placeholder-gray-100
+                    <input type="text" name="search" id="search" class="bg-blue-400 w-full p-2 text-lg placeholder-gray-100
                     rounded-xl border-white border-2 focus:border-blue-600 text-gray-50 font-['Poppins']
                     focus:outline-none" placeholder="Contoh: Programming">
                     <button type="submit"><i class="fas fa-search ml-3 text-white text-2xl"></i></button>

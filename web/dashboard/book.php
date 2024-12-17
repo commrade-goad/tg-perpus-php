@@ -44,7 +44,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     </div>
 
         <div class="bg-blue-600 flex p-3 justify-center items-center ">
-            <input type="text" id="searchInput" class="bg-blue-300 text-white w-1/2 p-2 text-xl rounded-xl 
+            <input type="text" id="searchInput" class="bg-blue-400 text-white w-1/2 p-2 text-xl rounded-xl 
                 border-white border-2 focus:border-blue-600 focus:outline-none" placeholder="Telusuri">
             <!-- <a href="#" class="ml-3 text-2xl text-white" onclick="handleSearchClick()"> -->
                 <!-- <i class="fas fa-search"></i> -->
