@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-blue-600">
+<body class="min-h-screen flex flex-col bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
         <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/dashboard/index.php'">
             PERPUSTAKAAN UKDC
         </div>
     </div>
 
-    <div class="bg-blue-600 font-bold p-5 text-right">
+    <div class="bg-blue-600 font-bold p-5 pb-1 text-right">
         <form action="/dashboard/logout.php" method="POST">
         <button type="submit" class="bg-blue-400 hover:bg-blue-700 text-gray-50 font-bold py-2 px-2 text-sm rounded">Logout</button>
         </form>
     </div>
 
-    <div class="bg-blue-600 p-3 flex">
-        <img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[400px] aspect-[3/4]">
+    <div class="bg-blue-600 p-4 pl-12 flex mb-8">
+        <img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[350px] aspect-[3/4]">
         <div class="p-3 text-3xl text-white">
             <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
             <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
@@ -36,8 +36,8 @@
         </div>
     </div>
 
-    <div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']">Licensed with GNU GPL v2.0</div>
 </body>
+        <footer class="bg-blue-800 font-bold text-center text-2xl p-5 text-gray-50 font-['Poppins'] mt-auto" style="font-family: 'Poppins';">Licensed with GNU GPL v2.0</footer>
 <script>
 
     function teleport(where) {

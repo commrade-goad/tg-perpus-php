@@ -24,7 +24,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-<body class="bg-blue-600">
+<body class="min-h-screen flex flex-col bg-blue-600">
     <!-- <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center">PERPUSTAKAAN UKDC</header> -->
     <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
         <div class="flex-1 text-white text-4xl text-center">
@@ -77,12 +77,11 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     </div>
                 </a>
             </div>
-    
         </section>
         
     </div>
 
     
-<div class="bg-blue-800 font-bold text-center text-2xl p-5 border-t-4 text-gray-50 font-['Poppins']" style="font-family: 'Poppins'; margin-top:31vh";>Licensed with GNU GPL v2.0</div>
 </body>
+    <footer class="bg-blue-800 font-bold text-center text-2xl p-5 text-gray-50 font-['Poppins'] mt-auto" style="font-family: 'Poppins';">Licensed with GNU GPL v2.0</footer>
 </html> 
