@@ -89,10 +89,9 @@ if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $count = $row["count"] + 1;
 }
 
-$insertStatement = $db->prepare("INSERT INTO book (book_id, title, author, desc, year, cover) VALUES (:book_id, :title, :author, :desc, :year, :cover)");
+$insertStatement = $db->prepare("INSERT INTO book (title, author, desc, year, cover) VALUES (:title, :author, :desc, :year, :cover)");
 
 if ($insertStatement) {
-    $insertStatement->bindValue(':tags_id', $count, SQLITE3_INTEGER);
     $insertStatement->bindValue(':title', $title, SQLITE3_TEXT);
     $insertStatement->bindValue(':author', $author, SQLITE3_TEXT);
     $insertStatement->bindValue(':desc', $desc, SQLITE3_TEXT);
@@ -100,6 +99,7 @@ if ($insertStatement) {
     $insertStatement->bindValue(':cover', $cover, SQLITE3_TEXT);
     
     if ($insertStatement->execute()) {
+        $count = $db->lastInsertRowID();
         echo json_encode(["success" => "Tag added successfully.", "book_id" => $count]);
     } else {
         echo json_encode(["error" => "Failed to add tag."]);
