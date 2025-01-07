@@ -70,7 +70,9 @@
                 document.getElementById('title').textContent = `${data.title}`;
                 document.getElementById('author').textContent = `${data.author}`;
                 document.getElementById('year').textContent = `${data.year}`;
-                document.getElementById('book-cover').src = `${data.cover}`;
+                if (data.cover !== ""){
+                    document.getElementById('book-cover').src = `${data.cover}`;
+                }
                 const tg = document.getElementById('tag');
 
 
