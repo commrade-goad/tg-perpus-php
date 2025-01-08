@@ -85,17 +85,15 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                   </tbody>
                 </table>
               </div>
-              <div class="p-4 flex flex-col sm:flex-row justify-between items-center rounded text-gray-50" style="font-family: 'Poppins';">
-                <!-- <div>Menampilkan 0 Sampai -</div> -->
-                
-                    <div>
-                        <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded mr-2">Sebelumnya</button>
-                    </div>
-                <div>
-                    <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded">Selanjutnya</button>
-                </div>
-                
-            </div>
+              <div class="p-4 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 rounded text-gray-50" style="font-family: 'Poppins';">
+    <div class="order-2 sm:order-1">
+        <button class="bg-blue-400 hover:bg-blue-600 px-4 py-2 rounded">Sebelumnya</button>
+    </div>
+    <div class="order-1 sm:order-2">
+        <button class="bg-blue-400 hover:bg-blue-600 px-4 py-2 rounded">Selanjutnya</button>
+    </div>
+</div>
+
         </div>
 
     </section>
@@ -114,7 +112,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 
     
     <div id="modal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden ">
-        <div class=" bg-white shadow-2xl rounded-lg w-1/2">
+        <div class=" bg-white shadow-2xl rounded-lg w-full max-w-lg mx-4 sm:mx-auto overflow-y-auto max-h-screen">
             <div class="p-4">
                 <h2 class="text-lg font-semibold mb-4">Tambah Buku</h2>
                 <form id="add_book">

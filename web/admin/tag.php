@@ -57,7 +57,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <input id="sbox" class="w-auto h-auto p-1 text-sm pl-2 pr-2 rounded-md" type="text" placeholder="Search tag...">
                     <button class="text-white bg-blue-500 p-2 rounded-lg" onclick="openModal()">Add tag</button>
                 </div>
-                <div class="flex justify-center align-center" id="tags-container">
+                <div class="flex justify-center align-center overflow-x-auto" id="tags-container">
                 </div>
                 <div class="flex justify-center items-center text-center">
                     <span id="prev" class="text-white text-2xl font-poppins p-2 font-bold"><</span>

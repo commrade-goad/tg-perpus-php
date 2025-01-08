@@ -1,6 +1,6 @@
 var all_tags = [];
 var page = 0;
-var range = 4;
+var range = 6;
 
 function gen_from() {
     return page * range;

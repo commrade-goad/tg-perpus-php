@@ -70,15 +70,14 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     </tbody>
                 </table>
             </div>
-            <div class="p-4 flex justify-between items-center rounded text-gray-50">
-                <!-- <div>Menampilkan 0 Sampai -</div> -->
-                <div>
-                    <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded mr-2">Sebelumnya</button>
-                </div>
-                    <div>
-                        <button class="bg-blue-400 hover:bg-blue-600 px-2 py-1 rounded">Selanjutnya</button>
-                    </div>
-            </div>
+            <div class="p-4 flex flex-col sm:flex-row justify-between items-center gap-2 sm:gap-0 rounded text-gray-50" style="font-family: 'Poppins';">
+    <div class="order-2 sm:order-1">
+        <button class="bg-blue-400 hover:bg-blue-600 px-4 py-2 rounded">Sebelumnya</button>
+    </div>
+    <div class="order-1 sm:order-2">
+        <button class="bg-blue-400 hover:bg-blue-600 px-4 py-2 rounded">Selanjutnya</button>
+    </div>
+</div>
         </div>
     </section>
 
