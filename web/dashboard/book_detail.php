@@ -26,7 +26,9 @@
         <div class="p-3 text-3xl text-white">
             <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
             <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
-            <div class="p-3 text-xl italic" id="year"></div>
+            <div class="p-3 pb-0 text-xl italic" id="year"></div>
+            <div class="p-3 pb-0 text-xl" id="pos">pos</div>
+            <div class="p-3 pt-0 text-xl" id="prodi">prodi</div>
             <div class="p-3 flex flex-wrap gap-4 items-center font-bold">
                 <div class="flex flex-wrap gap-2 text-base" id="tag"></div>
             </div>
@@ -70,6 +72,8 @@
                 document.getElementById('title').textContent = `${data.title}`;
                 document.getElementById('author').textContent = `${data.author}`;
                 document.getElementById('year').textContent = `${data.year}`;
+                document.getElementById('pos').textContent = `Posisi : ${data.pos}`;
+                document.getElementById('prodi').textContent = `Prodi : ${data.prodi}`;
                 if (data.cover !== ""){
                     document.getElementById('book-cover').src = `${data.cover}`;
                 }

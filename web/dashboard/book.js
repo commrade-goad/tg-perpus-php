@@ -76,18 +76,24 @@ function do_search() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    gquery = urlParams.get('query') || urlParams.get('tag') || "";
-
-    if (gquery) {
-        document.getElementById('searchInput').value = gquery;
-        fetch_search_book(gquery, page * data_len, data_len);
+    // TODO: make get('tag') use the get_book_from_tag api
+    //gquery = urlParams.get('query') || urlParams.get('tag') || "";
+    gquery = urlParams.get('query');
+    if (gquery == null) {
+        gquery = urlParams.get('tag');
     } else {
-        if (page <= 0) {
-            fetch_book(page, data_len);
+        if (gquery) {
+            document.getElementById('searchInput').value = gquery;
+            fetch_search_book(gquery, page * data_len, data_len);
         } else {
-            fetch_book(page * data_len, data_len);
+            if (page <= 0) {
+                fetch_book(page, data_len);
+            } else {
+                fetch_book(page * data_len, data_len);
+            }
         }
     }
+
 });
 
 let debounceTimeout;
@@ -134,6 +140,3 @@ prev_button.addEventListener("click", () => {
         refresh.innerHTML = page + 1;
     }   
 });
-
-// fetch_book(0, 10);
-// fetch_search_book("cpp", 0, 2);

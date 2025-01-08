@@ -28,8 +28,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
 // =======================
 
 if (isset($_POST["id"])) {
-    $id = (int)$tmp_id;
     $tmp_id = $_POST["id"];
+    $id = (int)$tmp_id;
 } else {
     echo json_encode(["error" => "Need a tag id!"]);
     exit();
