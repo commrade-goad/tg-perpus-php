@@ -41,6 +41,31 @@ async function fetch_book(from, range) {
     .catch(error => console.log(error));
 }
 
+async function fetch_get_book_from_id(query, from, range) {
+    gquery = query;
+    const c = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(gquery)}`).then(r => r.json());
+    const a = fetch(`/api/get_book_from_tag?id=${encodeURIComponent(gquery)}&from=${from}&range=${range}`)
+    .then(response => response.json())
+    .then(data => {
+        let new_arr = [];
+        data.forEach(element => {
+            new_arr.push(element);
+        });
+        max_page = c.length;
+        if (data.length <= 0) {
+            const booksContainer = document.getElementById('booksContainer');
+            booksContainer.innerHTML = '';
+            booksContainer.innerHTML = `
+            <div class="flex text-center text-white text-lg items-center">
+            Tidak ada buku yang ditemukan untuk pencarian "${gquery}".
+            </div>`;
+            return;
+        }
+        render_book(new_arr);
+    })
+    .catch(error => console.log(error));
+}
+
 async function fetch_search_book(query, from, range) {
     gquery = query;
     const c = await fetch(`/api/search?q=${encodeURIComponent(gquery)}`).then(r => r.json());
@@ -81,6 +106,16 @@ document.addEventListener('DOMContentLoaded', () => {
     gquery = urlParams.get('query');
     if (gquery == null) {
         gquery = urlParams.get('tag');
+        if (gquery) {
+            document.getElementById('searchInput').value = gquery;
+            fetch_get_book_from_id(gquery, page * data_len, data_len);
+        } else {
+            if (page <= 0) {
+                fetch_book(page, data_len);
+            } else {
+                fetch_book(page * data_len, data_len);
+            }
+        }
     } else {
         if (gquery) {
             document.getElementById('searchInput').value = gquery;

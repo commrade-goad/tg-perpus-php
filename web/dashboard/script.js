@@ -36,7 +36,7 @@ async function fetchTags(from, range) {
             li.className = 'bg-blue-400 hover:bg-blue-600 text-gray-50 py-2 px-2 rounded-lg';
 
             const a = document.createElement('a');
-            a.href = `/dashboard/book.php?tag=${encodeURIComponent(tag.name)}`;
+            a.href = `/dashboard/book.php?tag=${encodeURIComponent(tag.id)}`;
             a.textContent = tag.name;
 
             li.appendChild(a);
