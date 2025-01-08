@@ -74,6 +74,9 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     
                 </div>
             </div>
+                <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-500 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="apply-filter" aria-haspopup="true" aria-expanded="true">
+                    Apply Filter
+                </button>
         </div>
     </div>
 

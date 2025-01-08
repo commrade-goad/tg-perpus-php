@@ -2,14 +2,15 @@ var page = 0;
 var data_len = 10;
 var gquery = 0;
 var max_page = 0;
+var gbook_data = [];
 
-    // Dropdown functionality for Prodi
-    document.getElementById('dropdownProdiButton').addEventListener('click', function() {
-        const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
-        dropdownProdiMenu.style.display = dropdownProdiMenu.style.display === 'none' || dropdownProdiMenu.style.display === '' ? 'block' : 'none';
-    });
+// Dropdown functionality for Prodi
+document.getElementById('dropdownProdiButton').addEventListener('click', function() {
+    const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
+    dropdownProdiMenu.style.display = dropdownProdiMenu.style.display === 'none' || dropdownProdiMenu.style.display === '' ? 'block' : 'none';
+});
 
-    let selectedProdi = []; // Variabel untuk menyimpan Prodi yang dipilih
+let selectedProdi = []; // Variabel untuk menyimpan Prodi yang dipilih
 
 function updateSelectedProdi(checkbox) {
     const value = checkbox.value;
@@ -21,37 +22,35 @@ function updateSelectedProdi(checkbox) {
     console.log('Selected Prodi:', selectedProdi); // Handle nilai yang dipilih sesuai kebutuhan
 }
 
+// Dropdown functionality for Tags
+document.getElementById('dropdownTagButton').addEventListener('click', function() {
+    const dropdownTagMenu = document.getElementById('dropdownTagMenu');
+    dropdownTagMenu.style.display = dropdownTagMenu.style.display === 'none' || dropdownTagMenu.style.display === '' ? 'block' : 'none';
+});
 
-
-    // Dropdown functionality for Tags
-    document.getElementById('dropdownTagButton').addEventListener('click', function() {
-        const dropdownTagMenu = document.getElementById('dropdownTagMenu');
-        dropdownTagMenu.style.display = dropdownTagMenu.style.display === 'none' || dropdownTagMenu.style.display === '' ? 'block' : 'none';
-    });
-
-    // Close dropdowns if clicked outside
-    window.addEventListener('click', function(event) {
-        const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
-        const dropdownTagMenu = document.getElementById('dropdownTagMenu');
-        if (!event.target.matches('#dropdownProdiButton') && !dropdownProdiMenu.contains(event.target)) {
-            dropdownProdiMenu.style.display = 'none';
-        }
-        if (!event.target.matches('#dropdownTagButton') && !dropdownTagMenu.contains(event.target)) {
-            dropdownTagMenu.style.display = 'none';
-        }
-    });
-
-    let selectedTags = [];
-
-    function updateSelectedTags(checkbox) {
-        const value = checkbox.value;
-        if (checkbox.checked) {
-            selectedTags.push(value);
-        } else {
-            selectedTags = selectedTags.filter(item => item !== value);
-        }
-        console.log('Selected Tags:', selectedTags); // Handle selected values as needed
+// Close dropdowns if clicked outside
+window.addEventListener('click', function(event) {
+    const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
+    const dropdownTagMenu = document.getElementById('dropdownTagMenu');
+    if (!event.target.matches('#dropdownProdiButton') && !dropdownProdiMenu.contains(event.target)) {
+        dropdownProdiMenu.style.display = 'none';
     }
+    if (!event.target.matches('#dropdownTagButton') && !dropdownTagMenu.contains(event.target)) {
+        dropdownTagMenu.style.display = 'none';
+    }
+});
+
+let selectedTags = [];
+
+function updateSelectedTags(checkbox) {
+    const value = checkbox.value;
+    if (checkbox.checked) {
+        selectedTags.push(value);
+    } else {
+        selectedTags = selectedTags.filter(item => item !== value);
+    }
+    console.log('Selected Tags:', selectedTags); // Handle selected values as needed
+}
 
 // Fungsi untuk mendapatkan data Tag
 async function fetchTags() {
@@ -64,8 +63,9 @@ async function fetchTags() {
         tags.forEach(tag => {
             const label = document.createElement('label');
             label.className = 'flex items-center px-4 py-2';
+            const status = gquery == tag.id ? "checked" : "";
             label.innerHTML = `
-                <input type="checkbox" value="${tag.id}" class="mr-2" onchange="updateSelectedTags(this)">
+                <input type="checkbox" value="${tag.id}" class="mr-2" onchange="updateSelectedTags(this)" ${status}>
                 ${tag.name}
             `;
             dropdownTagMenu.appendChild(label);
@@ -77,9 +77,8 @@ async function fetchTags() {
 
 async function fetchProdi() {
     try {
-        const response = await fetch('/api/get_book/');
+        const response = await fetch('/api/get_prodi');
         const prodis = await response.json();
-        console.log('Prodi data:', prodis); // Debug output
         const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
         dropdownProdiMenu.innerHTML = '';
 
@@ -87,8 +86,8 @@ async function fetchProdi() {
             const label = document.createElement('label');
             label.className = 'flex items-center px-4 py-2';
             label.innerHTML = `
-                <input type="checkbox" value="${prodi.id}" class="mr-2 item" onchange="updateSelectedProdi(this)">
-                ${prodi.name}
+                <input type="checkbox" value="${prodi}" class="mr-2 item" onchange="updateSelectedProdi(this)">
+                ${prodi}
             `;
             dropdownProdiMenu.appendChild(label);
         });
@@ -96,8 +95,6 @@ async function fetchProdi() {
         console.error('Error fetching prodi:', error);
     }
 }
-
-
 
 
 // Panggil fungsi saat DOM selesai dimuat
@@ -141,15 +138,15 @@ async function fetch_book(from, range) {
     .then(response => response.json())
     .then(data => {
         render_book(data);
+        gbook_data = data;
         max_page = b.count;
     })
     .catch(error => console.log(error));
 }
 
-async function fetch_get_book_from_id(query, from, range) {
-    gquery = query;
-    const c = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(gquery)}`).then(r => r.json());
-    const a = fetch(`/api/get_book_from_tag?id=${encodeURIComponent(gquery)}&from=${from}&range=${range}`)
+async function fetch_get_book_from_tag(query, from, range) {
+    const c = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(query)}`).then(r => r.json());
+    const a = fetch(`/api/get_book_from_tag?id=${encodeURIComponent(query)}&from=${from}&range=${range}`)
     .then(response => response.json())
     .then(data => {
         let new_arr = [];
@@ -162,11 +159,12 @@ async function fetch_get_book_from_id(query, from, range) {
             booksContainer.innerHTML = '';
             booksContainer.innerHTML = `
             <div class="flex text-center text-white text-lg items-center">
-            Tidak ada buku yang ditemukan untuk pencarian "${gquery}".
+            Tidak ada buku yang ditemukan untuk pencarian "${query}".
             </div>`;
             return;
         }
         render_book(new_arr);
+        gbook_data = new_arr;
     })
     .catch(error => console.log(error));
 }
@@ -192,6 +190,7 @@ async function fetch_search_book(query, from, range) {
             return;
         }
         render_book(new_arr);
+        gbook_data = new_arr;
     })
     .catch(error => console.log(error));
 }
@@ -212,8 +211,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (gquery == null) {
         gquery = urlParams.get('tag');
         if (gquery) {
-            document.getElementById('searchInput').value = gquery;
-            fetch_get_book_from_id(gquery, page * data_len, data_len);
+            //document.getElementById('searchInput').value = gquery;
+            fetch_get_book_from_tag(gquery, page * data_len, data_len);
         } else {
             if (page <= 0) {
                 fetch_book(page, data_len);
@@ -256,6 +255,7 @@ document.getElementById('searchInput').addEventListener('change', () => {
 const prev_button = document.getElementById("prev");
 const refresh = document.getElementById("curr");
 const next_button = document.getElementById("next");
+const ap_fil = document.getElementById("apply-filter");
 
 next_button.addEventListener("click", () => {
     if (page + 1 * data_len < max_page) {
@@ -279,4 +279,36 @@ prev_button.addEventListener("click", () => {
         }
         refresh.innerHTML = page + 1;
     }   
+});
+
+ap_fil.addEventListener("click", () => {
+    const booksContainer = document.getElementById('booksContainer');
+    booksContainer.innerHTML = '';
+
+    if (selectedProdi.length == 0 && selectedTags == 0) {
+        render_book(gbook_data);
+    }
+
+    let nbook = [];
+
+    for (let i = 0; i < gbook_data.length; i++) {
+        let found = false;
+        for (const el of gbook_data[i].tags) {
+            if (selectedTags.includes(String(el.id))) {
+                found = true;
+                break;
+            }
+        }
+        if (!found && selectedProdi.includes(gbook_data[i].prodi)) {
+            found = true;
+        }
+        if (found) {
+            nbook.push(gbook_data[i]);
+        }
+    }
+
+    if (selectedTags.length > 0 && selectedProdi.length === 0 ||
+                selectedProdi.length > 0 && selectedTags.length === 0) {
+        render_book(nbook);
+    }
 });

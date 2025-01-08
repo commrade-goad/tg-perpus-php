@@ -117,6 +117,33 @@ if ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     $count = $row["count"] + 1;
 }
 
+$checkProdi = $db->query("SELECT * FROM prodi");
+$foundProdi = false;
+if ($checkProdi) {
+    while ($row = $checkProdi->fetchArray(SQLITE3_ASSOC)) {
+        if ($row["name"] == $prodi) {
+            $foundProdi = true;
+            break;
+        }
+    }
+}
+
+if (!$foundProdi) {
+    $insertNewProdi = $db->prepare("INSERT INTO prodi(name) VALUES (:name)");
+
+    if ($insertNewProdi) {
+        $insertNewProdi->bindValue(':name', $prodi, SQLITE3_TEXT);
+
+        if ($insertNewProdi->execute()) {
+            $count = $db->lastInsertRowID();
+        } else {
+            echo json_encode(["error" => "Failed to add the new prodi."]);
+        }
+    } else {
+        echo json_encode(["error" => "Failed to prepare statement for new prodi."]);
+    }
+}
+
 $insertStatement = $db->prepare("INSERT INTO book (title, author, desc, year, cover, prodi, pos) VALUES (:title, :author, :desc, :year, :cover, :prodi, :pos)");
 
 if ($insertStatement) {
