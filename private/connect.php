@@ -49,6 +49,19 @@ function create_table_book(SQLite3 &$db) {
     return true;
 }
 
+// might want to add later
+/*function create_table_prodi(SQLite3 &$db) {*/
+/*    $statement = */
+/*        "CREATE TABLE prodi (*/
+/*        prodi_id INTEGER PRIMARY KEY AUTOINCREMENT,*/
+/*        name TEXT,*/
+/*        )";*/
+/*    if (!$db->exec($statement)) {*/
+/*        return false;*/
+/*    }*/
+/*    return true;*/
+/*}*/
+
 function create_table_book_tags(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE book_tags (
