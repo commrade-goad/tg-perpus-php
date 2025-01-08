@@ -139,16 +139,16 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                         <input type="text" name="author" id= "author" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Pengarang">
                     </div>
                     <div class="mb-4">
-                        <label for="" class="text-gray-700">Tahun Terbit</label>
-                        <input type="text" name="year" id= "year" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Tahun">
+                        <label for="" class="text-gray-700">Prodi Buku</label>
+                        <input type="text" name="prodi" id= "prodi" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Prodi buku">
                     </div>
                     <div class="mb-4">
                         <label for="" class="text-gray-700">Posisi Buku</label>
                         <input type="text" name="posisi" id= "pos" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Posisi buku">
                     </div>
                     <div class="mb-4">
-                        <label for="" class="text-gray-700">Prodi Buku</label>
-                        <input type="text" name="prodi" id= "prodi" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Prodi buku">
+                        <label for="" class="text-gray-700">Tahun Terbit</label>
+                        <input type="text" name="year" id= "year" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Tahun">
                     </div>
                     <div class="mb-4">
                         <label for="" class="text-gray-700">Tags</label>
