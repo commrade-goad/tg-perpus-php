@@ -55,11 +55,15 @@ function addBookToTable(book) {
     <tr class="border-b border-blue-600 hover:bg-blue-500 text-gray-50">
         <td class="px-4 py-2">${book.title || '-'}</td>
         <td class="px-4 py-2">${book.author || '-'}</td>
+        <td class="px-4 py-2">${book.prodi || '-'}</td>
+        <td class="px-4 py-2">${book.pos || '-'}</td>
         <td class="px-4 py-2">${tagNames}</td>
         <td class="px-4 py-2">${book.year || '-'}</td>
         <td class="px-4 py-2">
-            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2 mb-2" onclick="editBook(${book.id})">Edit</button>
-            <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded" onclick="deleteBook(${book.id})">Delete</button>
+            <div class="flex justify-center items-center h-full space-x-2">
+                <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-1 " onclick="editBook(${book.id})">Edit</button>
+                <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded" onclick="deleteBook(${book.id})">Delete</button>
+            </div>
         </td>
     </tr>
     `;

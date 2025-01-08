@@ -64,6 +64,8 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <tr class="bg-blue-700 text-gray-50 text-lg" style="font-family: 'Poppins';">
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Judul</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Pengarang</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Prodi</th>
+                        <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Posisi</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Tags</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Tahun Terbit</th>
                         <th class="px-2 py-1 sm:px-4 sm:py-2 text-left">Aksi</th>
@@ -74,11 +76,15 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <tr class="border-b border-blue-600 hover:bg-blue-500 text-gray-50" style="font-family: 'Poppins';">
                       <td class="px-4 py-2"><?= htmlspecialchars($row['title']); ?></td>
                       <td class="px-4 py-2"><?= htmlspecialchars($row['author']); ?></td>
+                      <td class="px-4 py-2"></td>
+                      <td class="px-4 py-2"></td>
                       <td class="px-4 py-2"><?= htmlspecialchars($row['tags']); ?></td>
                       <td class="px-4 py-2"><?= htmlspecialchars($row['year']); ?></td>
                       <td class="px-4 py-2">
-                        <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2 my-1">Edit</button>
-                        <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded">Delete</button>
+                            <div class="flex justify-center items-center h-full space-x-2">
+                                <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded mr-2 my-1">Edit</button>
+                                <button class="bg-blue-400 hover:bg-blue-700 px-2 py-1 rounded">Delete</button>
+                            </div>
                       </td>
                     </tr>
                     <?php endforeach; ?>
