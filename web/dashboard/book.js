@@ -3,6 +3,111 @@ var data_len = 10;
 var gquery = 0;
 var max_page = 0;
 
+    // Dropdown functionality for Prodi
+    document.getElementById('dropdownProdiButton').addEventListener('click', function() {
+        const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
+        dropdownProdiMenu.style.display = dropdownProdiMenu.style.display === 'none' || dropdownProdiMenu.style.display === '' ? 'block' : 'none';
+    });
+
+    let selectedProdi = []; // Variabel untuk menyimpan Prodi yang dipilih
+
+function updateSelectedProdi(checkbox) {
+    const value = checkbox.value;
+    if (checkbox.checked) {
+        selectedProdi.push(value);
+    } else {
+        selectedProdi = selectedProdi.filter(item => item !== value);
+    }
+    console.log('Selected Prodi:', selectedProdi); // Handle nilai yang dipilih sesuai kebutuhan
+}
+
+
+
+    // Dropdown functionality for Tags
+    document.getElementById('dropdownTagButton').addEventListener('click', function() {
+        const dropdownTagMenu = document.getElementById('dropdownTagMenu');
+        dropdownTagMenu.style.display = dropdownTagMenu.style.display === 'none' || dropdownTagMenu.style.display === '' ? 'block' : 'none';
+    });
+
+    // Close dropdowns if clicked outside
+    window.addEventListener('click', function(event) {
+        const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
+        const dropdownTagMenu = document.getElementById('dropdownTagMenu');
+        if (!event.target.matches('#dropdownProdiButton') && !dropdownProdiMenu.contains(event.target)) {
+            dropdownProdiMenu.style.display = 'none';
+        }
+        if (!event.target.matches('#dropdownTagButton') && !dropdownTagMenu.contains(event.target)) {
+            dropdownTagMenu.style.display = 'none';
+        }
+    });
+
+    let selectedTags = [];
+
+    function updateSelectedTags(checkbox) {
+        const value = checkbox.value;
+        if (checkbox.checked) {
+            selectedTags.push(value);
+        } else {
+            selectedTags = selectedTags.filter(item => item !== value);
+        }
+        console.log('Selected Tags:', selectedTags); // Handle selected values as needed
+    }
+
+// Fungsi untuk mendapatkan data Tag
+async function fetchTags() {
+    try {
+        const response = await fetch('/api/get_tag/');
+        const tags = await response.json();
+        const dropdownTagMenu = document.getElementById('dropdownTagMenu');
+        dropdownTagMenu.innerHTML = ''; // Kosongkan konten sebelumnya
+
+        tags.forEach(tag => {
+            const label = document.createElement('label');
+            label.className = 'flex items-center px-4 py-2';
+            label.innerHTML = `
+                <input type="checkbox" value="${tag.id}" class="mr-2" onchange="updateSelectedTags(this)">
+                ${tag.name}
+            `;
+            dropdownTagMenu.appendChild(label);
+        });
+    } catch (error) {
+        console.error('Error fetching tags:', error);
+    }
+}
+
+async function fetchProdi() {
+    try {
+        const response = await fetch('/api/get_book/');
+        const prodis = await response.json();
+        console.log('Prodi data:', prodis); // Debug output
+        const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
+        dropdownProdiMenu.innerHTML = '';
+
+        prodis.forEach(prodi => {
+            const label = document.createElement('label');
+            label.className = 'flex items-center px-4 py-2';
+            label.innerHTML = `
+                <input type="checkbox" value="${prodi.id}" class="mr-2 item" onchange="updateSelectedProdi(this)">
+                ${prodi.name}
+            `;
+            dropdownProdiMenu.appendChild(label);
+        });
+    } catch (error) {
+        console.error('Error fetching prodi:', error);
+    }
+}
+
+
+
+
+// Panggil fungsi saat DOM selesai dimuat
+document.addEventListener('DOMContentLoaded', () => {
+    fetchTags();
+    fetchProdi();
+});
+
+
+
 // TODO: Make ?query or tag right so not broken when searching afterward
 
 function render_book(book_arr) {

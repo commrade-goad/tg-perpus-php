@@ -43,13 +43,39 @@ $_SESSION['LAST_ACTIVITY'] = time();
         </form>
     </div>
 
-        <div class="bg-blue-600 flex p-3 justify-center items-center ">
-            <input type="text" id="searchInput" class="bg-blue-400 text-white w-1/2 p-2 text-xl rounded-xl 
-                border-white border-2 focus:border-blue-600 focus:outline-none" placeholder="Telusuri">
-            <!-- <a href="#" class="ml-3 text-2xl text-white" onclick="handleSearchClick()"> -->
-                <!-- <i class="fas fa-search"></i> -->
-            <!-- </a> -->
+<!-- Centered Search and Filter Section -->
+<div class="bg-blue-600 flex flex-col items-center p-3">
+        <input type="text" id="searchInput" class="bg-blue-400 text-white w-1/2 p-2 text-xl rounded-xl 
+            border-white border-2 focus:border-blue-600 focus:outline-none mb-3" placeholder="Telusuri">
+
+        <div class="flex space-x-4 mb-5">
+            <!-- Dropdown for Prodi Filter -->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-500 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="dropdownProdiButton" aria-haspopup="true" aria-expanded="true">
+                        Filter Prodi
+                    </button>
+                </div>
+
+                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownProdiMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownProdiButton" tabindex="-1" style="display: none;">
+                    
+                </div>
+            </div>
+
+            <!-- Dropdown for Tags Filter -->
+            <div class="relative inline-block text-left">
+                <div>
+                    <button type="button" class=" inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-500 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="dropdownTagButton" aria-haspopup="true" aria-expanded="true">
+                        Filter Tags
+                    </button>
+                </div>
+
+                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownTagMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownTagButton" tabindex="-1" style="display: none;">
+                    
+                </div>
+            </div>
         </div>
+    </div>
 
         <div class="bg-blue-600">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4" id="booksContainer">
