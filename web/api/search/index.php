@@ -136,7 +136,9 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $row["desc"],
         [],
         $row["year"],
-        $row["cover"]
+        $row["cover"],
+        $row["prodi"],
+        $row["pos"],
     );
     $books[] = $tmp;
 }

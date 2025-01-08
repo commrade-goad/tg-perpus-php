@@ -133,13 +133,21 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                         <input type="text" name="author" id= "author" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Pengarang">
                     </div>
                     <div class="mb-4">
+                        <label for="" class="text-gray-700">Tahun Terbit</label>
+                        <input type="text" name="year" id= "year" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Tahun">
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="text-gray-700">Posisi Buku</label>
+                        <input type="text" name="posisi" id= "pos" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Posisi buku">
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="text-gray-700">Prodi Buku</label>
+                        <input type="text" name="prodi" id= "prodi" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Prodi buku">
+                    </div>
+                    <div class="mb-4">
                         <label for="" class="text-gray-700">Tags</label>
                         <div id="tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
                         <input type="hidden" name="tag_ids" id="tag_ids" value="">
-                    </div>
-                    <div class="mb-4">
-                        <label for="" class="text-gray-700">Tahun Terbit</label>
-                        <input type="text" name="year" id= "year" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Tahun">
                     </div>
                     <div class="flex justify-end">
                         <button type="button" id="batal" onclick="closeModal()" class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded mr-2">Batal</button>
@@ -173,12 +181,20 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <input type="text" name="author" id="edit_author" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Pengarang">
                 </div>
                 <div class="mb-4">
-                    <label for="tags" class="text-gray-700">Tags</label>
-                    <div id="edit_tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
-                </div>
-                <div class="mb-4">
                     <label for="year" class="text-gray-700">Tahun Terbit</label>
                     <input type="text" name="year" id="edit_year" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Tahun">
+                </div>
+                <div class="mb-4">
+                    <label for="" class="text-gray-700">Posisi Buku</label>
+                    <input type="text" name="posisi" id= "edit_pos" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Posisi buku">
+                </div>
+                <div class="mb-4">
+                    <label for="" class="text-gray-700">Prodi Buku</label>
+                    <input type="text" name="prodi" id= "edit_prodi" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Prodi buku">
+                </div>
+                <div class="mb-4">
+                    <label for="tags" class="text-gray-700">Tags</label>
+                    <div id="edit_tagsContainer" class="flex flex-wrap gap-2 mt-2"></div>
                 </div>
                 <div class="flex justify-end">
                     <button type="button" id="batal" onclick="closeEditModal()" class="bg-gray-300 hover:bg-gray-400 px-4 py-2 rounded mr-2">Batal</button>

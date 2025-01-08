@@ -167,6 +167,8 @@ function filterBooks(query) {
             author: $("#author").val(),
             tags: stringTags,
             year: $("#year").val(),
+            pos: $("#pos").val(),
+            prodi: $("#prodi").val(),
        };
         
         // Log the data being sent
@@ -206,6 +208,8 @@ function editBook(id) {
             $('#edit_img').val(response.cover);
             $('#edit_author').val(response.author);
             $('#edit_year').val(response.year);
+            $('#edit_pos').val(response.pos);
+            $('#edit_prodi').val(response.prodi);
 
             // Reset dan persiapkan pemilihan tag
             selectedTagIds = []; // Kosongkan pilihan sebelumnya
@@ -308,6 +312,8 @@ $("#edit_book").submit(function(event) {
         author: $("#edit_author").val(),
         tags: stringTags, // Menggunakan stringTags yang sudah diformat
         year: $("#edit_year").val(),
+        pos: $("#edit_pos").val(),
+        prodi: $("#edit_prodi").val(),
     };
 
     // AJAX request to update book

@@ -39,7 +39,9 @@ function create_table_book(SQLite3 &$db) {
         author TEXT,
         desc TEXT,
         year TEXT,
-        cover TEXT
+        cover TEXT,
+        prodi TEXT,
+        pos TEXT
         )";
     if (!$db->exec($statement)) {
         return false;

@@ -25,7 +25,9 @@ if (isset($_GET["id"])) {
             $row["desc"],
             array(),
             $row["year"],
-            $row["cover"]
+            $row["cover"],
+            $row["prodi"],
+            $row["pos"]
         );
         $book = $tmp;
     }
@@ -68,7 +70,9 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $row["desc"],
         array(),
         $row["year"],
-        $row["cover"]
+        $row["cover"],
+        $row["prodi"],
+        $row["pos"],
     );
     array_push($books, $tmp);
 }

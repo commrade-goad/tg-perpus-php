@@ -38,7 +38,7 @@ if (isset($_GET["range"])) {
 }
 
 $statement = "
-    SELECT b.book_id, b.title, b.author, b.desc, b.year, b.cover
+    SELECT b.book_id, b.title, b.author, b.desc, b.year, b.cover, b.pos, b.prodi
     FROM book b
     JOIN book_tags bt ON b.book_id = bt.book_id
     JOIN all_tags at ON bt.tags_id = at.tags_id
@@ -52,7 +52,9 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
         $row["desc"],
         array(),
         $row["year"],
-        $row["cover"]
+        $row["cover"],
+        $row["pos"],
+        $row["prodi"],
     );
     array_push($books, $tmp);
 }

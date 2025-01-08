@@ -13,6 +13,8 @@ $desc = "";
 $tags = array(); 
 $year = "";
 $cover = "";
+$pos = "";
+$prodi = "";
 
 check_and_create($db);
 header('Content-Type: application/json');
@@ -26,8 +28,8 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] ==
 // =======================
 
 if (isset($_POST["id"])) {
-    $tmp_id = $_POST["id"];
     $id = (int)$tmp_id;
+    $tmp_id = $_POST["id"];
 } else {
     echo json_encode(["error" => "Need a tag id!"]);
     exit();
@@ -92,7 +94,33 @@ if (isset($_POST["img"])) {
 
 // =======================
 
-$insertStatement = $db->prepare("UPDATE book set title = :title, author = :author, desc = :desc, year = :year, cover = :cover where book_id = :book_id");
+// =======================
+
+if (isset($_POST["prodi"])) {
+    $prodi = $_POST["prodi"];
+}
+
+if ($prodi == "") {
+    echo json_encode(["error" => "Not Valid!"]);
+    exit();
+}
+
+// =======================
+
+// =======================
+
+if (isset($_POST["pos"])) {
+    $pos = $_POST["pos"];
+}
+
+if ($pos == "") {
+    echo json_encode(["error" => "Not Valid!"]);
+    exit();
+}
+
+// =======================
+
+$insertStatement = $db->prepare("UPDATE book set title = :title, author = :author, desc = :desc, year = :year, cover = :cover where book_id = :book_id, pos = :pos, prodi = :prodi");
 
 if ($insertStatement) {
     $insertStatement->bindValue(':book_id', $id, SQLITE3_INTEGER);
@@ -101,6 +129,8 @@ if ($insertStatement) {
     $insertStatement->bindValue(':desc', $desc, SQLITE3_TEXT);
     $insertStatement->bindValue(':year', $year, SQLITE3_TEXT);
     $insertStatement->bindValue(':cover', $cover, SQLITE3_TEXT);
+    $insertStatement->bindValue(':prodi', $prodi, SQLITE3_TEXT);
+    $insertStatement->bindValue(':pos', $pos, SQLITE3_TEXT);
     
     if ($insertStatement->execute()) {
         echo json_encode(["success" => "Tag added successfully.", "book_id" => $id]);
