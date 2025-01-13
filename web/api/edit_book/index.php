@@ -147,7 +147,7 @@ if (!$foundProdi) {
     }
 }
 
-$insertStatement = $db->prepare("UPDATE book set title = :title, author = :author, desc = :desc, year = :year, cover = :cover where book_id = :book_id, pos = :pos, prodi = :prodi");
+$insertStatement = $db->prepare("UPDATE book set title = :title, author = :author, desc = :desc, year = :year, cover = :cover,  pos = :pos, prodi = :prodi where book_id = :book_id");
 
 if ($insertStatement) {
     $insertStatement->bindValue(':book_id', $id, SQLITE3_INTEGER);
