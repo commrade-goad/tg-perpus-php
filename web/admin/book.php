@@ -166,7 +166,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
     </div>
 
     <div id="editModal" class="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-75 hidden">
-    <div class="bg-white shadow-2xl rounded-lg w-1/2">
+    <div class="bg-white shadow-2xl rounded-lg w-full max-w-lg mx-4 sm:mx-auto overflow-y-auto max-h-screen">
         <div class="p-4">
             <h2 class="text-lg font-semibold mb-4">Edit Buku</h2>
             <form id="edit_book">
