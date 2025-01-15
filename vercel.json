@@ -1,35 +1,31 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "web/**/*.php",
-      "use": "@vercel/php"
-    }
-  ],
-  "routes": [
-    { "src": "/admin/(.*)", "dest": "/web/admin/$1" },
-    { "src": "/api/add_book", "dest": "/web/api/add_book/index.php" },
-    { "src": "/api/add_tag", "dest": "/web/api/add_tag/index.php" },
-    { "src": "/api/add_user", "dest": "/web/api/add_user/index.php" },
-    { "src": "/api/auth_destroy", "dest": "/web/api/auth_destroy/index.php" },
-    { "src": "/api/auth_user", "dest": "/web/api/auth_user/index.php" },
-    { "src": "/api/del_book", "dest": "/web/api/del_book/index.php" },
-    { "src": "/api/del_tag", "dest": "/web/api/del_tag/index.php" },
-    { "src": "/api/del_user", "dest": "/web/api/del_user/index.php" },
-    { "src": "/api/edit_book", "dest": "/web/api/edit_book/index.php" },
-    { "src": "/api/edit_tag", "dest": "/web/api/edit_tag/index.php" },
-    { "src": "/api/edit_user", "dest": "/web/api/edit_user/index.php" },
-    { "src": "/api/get_book", "dest": "/web/api/get_book/index.php" },
-    { "src": "/api/get_book_count", "dest": "/web/api/get_book_count/index.php" },
-    { "src": "/api/get_book_from_tag", "dest": "/web/api/get_book_from_tag/index.php" },
-    { "src": "/api/get_prodi", "dest": "/web/api/get_prodi/index.php" },
-    { "src": "/api/get_tag", "dest": "/web/api/get_tag/index.php" },
-    { "src": "/api/get_tag_count", "dest": "/web/api/get_tag_count/index.php" },
-    { "src": "/api/get_user", "dest": "/web/api/get_user/index.php" },
-    { "src": "/api/search", "dest": "/web/api/search/index.php" },
-    { "src": "/dashboard/(.*)", "dest": "/web/dashboard/$1" },
-    { "src": "/example/(.*)", "dest": "/web/example/$1" },
-    { "src": "/login", "dest": "/web/login/index.php" },
-    { "src": "/", "dest": "/web/index.php" }
-  ]
+    "functions": {
+        "web/api/**/*.php": { "runtime": "vercel-php@0.7.3" }
+    },
+    "routes": [
+        { "src": "/admin/(.*)", "dest": "/web/admin/$1" },
+        { "src": "/api/add_book", "dest": "/web/api/add_book/index.php" },
+        { "src": "/api/add_tag", "dest": "/web/api/add_tag/index.php" },
+        { "src": "/api/add_user", "dest": "/web/api/add_user/index.php" },
+        { "src": "/api/auth_destroy", "dest": "/web/api/auth_destroy/index.php" },
+        { "src": "/api/auth_user", "dest": "/web/api/auth_user/index.php" },
+        { "src": "/api/del_book", "dest": "/web/api/del_book/index.php" },
+        { "src": "/api/del_tag", "dest": "/web/api/del_tag/index.php" },
+        { "src": "/api/del_user", "dest": "/web/api/del_user/index.php" },
+        { "src": "/api/edit_book", "dest": "/web/api/edit_book/index.php" },
+        { "src": "/api/edit_tag", "dest": "/web/api/edit_tag/index.php" },
+        { "src": "/api/edit_user", "dest": "/web/api/edit_user/index.php" },
+        { "src": "/api/get_book", "dest": "/web/api/get_book/index.php" },
+        { "src": "/api/get_book_count", "dest": "/web/api/get_book_count/index.php" },
+        { "src": "/api/get_book_from_tag", "dest": "/web/api/get_book_from_tag/index.php" },
+        { "src": "/api/get_prodi", "dest": "/web/api/get_prodi/index.php" },
+        { "src": "/api/get_tag", "dest": "/web/api/get_tag/index.php" },
+        { "src": "/api/get_tag_count", "dest": "/web/api/get_tag_count/index.php" },
+        { "src": "/api/get_user", "dest": "/web/api/get_user/index.php" },
+        { "src": "/api/search", "dest": "/web/api/search/index.php" },
+        { "src": "/dashboard/(.*)", "dest": "/web/dashboard/$1" },
+        { "src": "/example/(.*)", "dest": "/web/example/$1" },
+        { "src": "/login", "dest": "/web/login/index.php" },
+        { "src": "/", "dest": "/web/index.php" }
+    ]
 }
