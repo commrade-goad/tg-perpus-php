@@ -21,8 +21,9 @@
         </form>
     </div>
 
-    <div class="bg-blue-600 p-4 pl-12 flex mb-8">
-        <img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[350px] aspect-[3/4]">
+    <div class="bg-blue-600 p-4 pl-12 flex mb-8 book-container">
+        <!--<img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[350px] aspect-[3/4]">-->
+        <img id="book-cover" src="/src/cover.jpg" alt="Cover" crossorigin="anonymous">
         <div class="p-3 text-3xl text-white">
             <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
             <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
@@ -103,4 +104,20 @@
         console.log(val)
     }
 </script>
+    <style>
+    @media (max-width: 900px) {
+        .book-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    #book-cover {
+        max-width: 350px;
+        max-height: 100%;
+        aspect-ratio: 3/4;
+    }
+    .tag-btn {
+        cursor: pointer;
+    }
+    </style>
 </html>

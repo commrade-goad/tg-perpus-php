@@ -57,7 +57,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     </button>
                 </div>
 
-                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownProdiMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownProdiButton" tabindex="-1" style="display: none;">
+                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownProdiMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownProdiButton" tabindex="-1" style="display: none; font-size: 8pt">
                     
                 </div>
             </div>
@@ -70,7 +70,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                     </button>
                 </div>
 
-                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownTagMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownTagButton" tabindex="-1" style="display: none;">
+                <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownTagMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownTagButton" tabindex="-1" style="display: none; font-size: 8pt">
                     
                 </div>
             </div>
@@ -80,7 +80,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
         </div>
     </div>
 
-        <div class="bg-blue-600">
+        <div class="bg-blue-600 justify-center">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4" id="booksContainer">
                 <!-- Buku akan ditampilkan di sini -->
             </div>

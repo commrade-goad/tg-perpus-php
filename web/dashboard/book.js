@@ -63,7 +63,7 @@ async function fetchTags() {
 
         tags.forEach(tag => {
             const label = document.createElement('label');
-            label.className = 'flex items-center px-4 py-2';
+            label.className = 'flex items-center px-4 py-2 overflow-hidden';
             const status = gquery == tag.id ? "checked" : "";
             label.innerHTML = `
                 <input type="checkbox" value="${tag.id}" class="mr-2" onchange="updateSelectedTags(this)" ${status}>
@@ -85,7 +85,7 @@ async function fetchProdi() {
 
         prodis.forEach(prodi => {
             const label = document.createElement('label');
-            label.className = 'flex items-center px-4 py-2';
+            label.className = 'flex items-center px-4 py-2 overflow-hidden';
             label.innerHTML = `
                 <input type="checkbox" value="${prodi}" class="mr-2 item" onchange="updateSelectedProdi(this)">
                 ${prodi}
@@ -111,17 +111,25 @@ function render_book(book_arr) {
         const bookElement = document.createElement('div');
         bookElement.className = 'p-4 bg-blue-300 rounded-lg shadow hover:shadow-xl transition-shadow';
 
-        const coverImage = book.cover || '/src/cover.jpg';
+        var coverImage = book.cover
+        if (coverImage === "" || null) {
+            '/src/cover.jpg'
+        };
 
         bookElement.innerHTML = `
         <a href="book_detail.php?id=${book.id}">
-        <div class="flex flex-col items-center text-center" book_id="${book.id}" id="sendThis">
-        <div class="w-50 h-50">
-        <img src="${coverImage}" alt="Cover Book" class="w-full h-full object-cover rounded-lg mb-2">
-        </div>
-        <div class="text-lg font-semibold judul">${book.title}</div>
-        <div class="text-sm text-gray-500 author">${book.author}</div>
-        </div>
+            <div class="flex flex-col items-center text-center h-full" book_id="${book.id}" id="sendThis">
+                <div class="w-[100%] h-[100%] overflow-hidden">
+                    <img src="${coverImage}" alt="Cover Book" class="w-full h-full object-cover rounded-lg mb-2">
+                </div>
+                <!-- Ensure this container stretches and pushes mt-auto div to the bottom -->
+                <div class="flex flex-col flex-grow">
+                    <div class="mt-auto">
+                        <div class="text-lg font-semibold judul">${book.title}</div>
+                        <div class="text-sm text-gray-500 author">${book.author}</div>
+                    </div>
+                </div>
+            </div>
         </a>
         `;
 
@@ -144,7 +152,7 @@ async function fetch_all_books() {
         const book_count = await response.json();
         max_page = book_count.count;
 
-        const all_books_response = await fetch(`/api/get_all_books`);
+        const all_books_response = await fetch(`/api/get_book`);
         full_book_data = await all_books_response.json();
 
         gbook_data = full_book_data; // Initially set global data to all books
