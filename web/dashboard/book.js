@@ -3,6 +3,7 @@ var data_len = 10;
 var gquery = 0;
 var max_page = 0;
 var gbook_data = [];
+var full_book_data = [];
 
 // Dropdown functionality for Prodi
 document.getElementById('dropdownProdiButton').addEventListener('click', function() {
@@ -96,17 +97,13 @@ async function fetchProdi() {
     }
 }
 
-
 // Panggil fungsi saat DOM selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     fetchTags();
     fetchProdi();
 });
 
-
-
-// TODO: Make ?query or tag right so not broken when searching afterward
-
+// Function to render books
 function render_book(book_arr) {
     const booksContainer = document.getElementById('booksContainer');
     booksContainer.innerHTML = '';
@@ -132,107 +129,79 @@ function render_book(book_arr) {
     });
 }
 
-async function fetch_book(from, range) {
-    const b = await fetch(`/api/get_book_count`).then(r => r.json());
-    const a = fetch(`/api/get_book?from=${from}&range=${range}`)
-    .then(response => response.json())
-    .then(data => {
-        render_book(data);
-        gbook_data = data;
-        max_page = b.count;
-    })
-    .catch(error => console.log(error));
+// Function to render current page of books
+function render_current_page() {
+    const start = page * data_len;
+    const end = start + data_len;
+    const books_to_render = gbook_data.slice(start, end);
+    render_book(books_to_render);
 }
 
-async function fetch_get_book_from_tag(query, from, range) {
-    const c = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(query)}`).then(r => r.json());
-    const a = fetch(`/api/get_book_from_tag?id=${encodeURIComponent(query)}&from=${from}&range=${range}`)
-    .then(response => response.json())
-    .then(data => {
-        let new_arr = [];
-        data.forEach(element => {
-            new_arr.push(element);
-        });
-        max_page = c.length;
-        if (data.length <= 0) {
-            const booksContainer = document.getElementById('booksContainer');
-            booksContainer.innerHTML = '';
-            booksContainer.innerHTML = `
-            <div class="flex text-center text-white text-lg items-center">
-            Tidak ada buku yang ditemukan untuk pencarian "${query}".
-            </div>`;
-            return;
-        }
-        render_book(new_arr);
-        gbook_data = new_arr;
-    })
-    .catch(error => console.log(error));
+// Fetch all books and store in global variable
+async function fetch_all_books() {
+    try {
+        const response = await fetch(`/api/get_book_count`);
+        const book_count = await response.json();
+        max_page = book_count.count;
+
+        const all_books_response = await fetch(`/api/get_all_books`);
+        full_book_data = await all_books_response.json();
+
+        gbook_data = full_book_data; // Initially set global data to all books
+        render_current_page();
+    } catch (error) {
+        console.error('Error fetching all books:', error);
+    }
 }
 
-async function fetch_search_book(query, from, range) {
+// Fetch all books from a tag and store in global variable
+async function fetch_all_books_from_tag(tag) {
+    try {
+        const response = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(tag)}`);
+        full_book_data = await response.json();
+        gbook_data = full_book_data; // Set global data to books from tag
+        max_page = gbook_data.length;
+        render_current_page();
+    } catch (error) {
+        console.error('Error fetching books from tag:', error);
+    }
+}
+
+// Fetch all search results and store in global variable
+async function fetch_all_search_results(query) {
     gquery = query;
-    const c = await fetch(`/api/search?q=${encodeURIComponent(gquery)}`).then(r => r.json());
-    const a = fetch(`/api/search?q=${encodeURIComponent(gquery)}&from=${from}&range=${range}`)
-    .then(response => response.json())
-    .then(data => {
-        let new_arr = [];
-        data.forEach(element => {
-            new_arr.push(element.book);
-        });
-        max_page = c.length;
-        if (data.length <= 0) {
-            const booksContainer = document.getElementById('booksContainer');
-            booksContainer.innerHTML = '';
-            booksContainer.innerHTML = `
-            <div class="flex text-center text-white text-lg items-center">
-            Tidak ada buku yang ditemukan untuk pencarian "${gquery}".
-            </div>`;
-            return;
-        }
-        render_book(new_arr);
-        gbook_data = new_arr;
-    })
-    .catch(error => console.log(error));
+    try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(gquery)}`);
+        full_book_data = await response.json();
+        gbook_data = full_book_data.map(item => item.book); // Extract books from search results
+        max_page = gbook_data.length;
+        render_current_page();
+    } catch (error) {
+        console.error('Error fetching search results:', error);
+    }
 }
 
 function do_search() {
     const query = document.getElementById('searchInput').value.trim();
     if (query) {
         gquery = query;
-        fetch_search_book(gquery, page * data_len, data_len);
+        fetch_all_search_results(gquery);
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    // TODO: make get('tag') use the get_book_from_tag api
-    //gquery = urlParams.get('query') || urlParams.get('tag') || "";
-    gquery = urlParams.get('query');
-    if (gquery == null) {
-        gquery = urlParams.get('tag');
-        if (gquery) {
-            //document.getElementById('searchInput').value = gquery;
-            fetch_get_book_from_tag(gquery, page * data_len, data_len);
-        } else {
-            if (page <= 0) {
-                fetch_book(page, data_len);
-            } else {
-                fetch_book(page * data_len, data_len);
-            }
-        }
+    const query = urlParams.get('query');
+    const tag = urlParams.get('tag');
+    
+    if (query) {
+        document.getElementById('searchInput').value = query;
+        fetch_all_search_results(query);
+    } else if (tag) {
+        fetch_all_books_from_tag(tag);
     } else {
-        if (gquery) {
-            document.getElementById('searchInput').value = gquery;
-            fetch_search_book(gquery, page * data_len, data_len);
-        } else {
-            if (page <= 0) {
-                fetch_book(page, data_len);
-            } else {
-                fetch_book(page * data_len, data_len);
-            }
-        }
+        fetch_all_books();
     }
-
 });
 
 let debounceTimeout;
@@ -241,11 +210,7 @@ document.getElementById('searchInput').addEventListener('change', () => {
     debounceTimeout = setTimeout(() => {
         const query = document.getElementById('searchInput').value.trim();
         if (query === "") {
-            if (page <= 0) {
-                fetch_book(page, data_len);
-            } else {
-                fetch_book(page * data_len, data_len);
-            }
+            fetch_all_books();
         } else {
             do_search();
         }
@@ -258,13 +223,9 @@ const next_button = document.getElementById("next");
 const ap_fil = document.getElementById("apply-filter");
 
 next_button.addEventListener("click", () => {
-    if (page + 1 * data_len < max_page) {
+    if ((page + 1) * data_len < max_page) {
         page += 1;
-        if (gquery === "") {
-            fetch_book(page * data_len, data_len);
-        } else {
-            fetch_search_book(gquery, page * data_len, data_len);
-        }
+        render_current_page();
         refresh.innerHTML = page + 1;
     }   
 });
@@ -272,11 +233,7 @@ next_button.addEventListener("click", () => {
 prev_button.addEventListener("click", () => {
     if (page > 0) {
         page -= 1;
-        if (gquery === "") {
-            fetch_book(page * data_len, data_len);
-        } else {
-            fetch_search_book(gquery, page * data_len, data_len);
-        }
+        render_current_page();
         refresh.innerHTML = page + 1;
     }   
 });
