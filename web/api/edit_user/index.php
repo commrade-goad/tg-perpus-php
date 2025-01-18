@@ -2,8 +2,8 @@
 session_start();
 
 $db = null;
-include "../../../private/connect.php";
-include "../../../private/user.php";
+include "../../private/connect.php";
+include "../../private/user.php";
 
 $id = null;
 $password = "";

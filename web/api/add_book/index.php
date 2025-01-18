@@ -2,9 +2,9 @@
 session_start();
 
 $db = null;
-include "../../../private/connect.php";
-include "../../../private/book.php";
-include "../../../private/tag.php";
+include "../../private/connect.php";
+include "../../private/book.php";
+include "../../private/tag.php";
 
 $book = null;
 $count = 0;

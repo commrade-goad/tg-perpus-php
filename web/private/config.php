@@ -4,7 +4,7 @@
 $env =getenv();
 
 // PATH TO DB
-$db_path = "/home/fernando/git/tg-perpus-php/private/db.sqlite";
+$db_path = __DIR__."/db.sqlite";
 $simp_key = "U0FZQSBBRE1JTgo=";
 
 // check env

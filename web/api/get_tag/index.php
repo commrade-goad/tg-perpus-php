@@ -1,9 +1,9 @@
 <?php
 
 $db = null;
-include "../../../private/connect.php";
-include "../../../private/book.php";
-include "../../../private/tag.php";
+include "../../private/connect.php";
+include "../../private/book.php";
+include "../../private/tag.php";
 
 $tags = array();
 $sort = "ASC";
@@ -59,4 +59,3 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
 
 echo json_encode($tags);
 close_db($db);
-

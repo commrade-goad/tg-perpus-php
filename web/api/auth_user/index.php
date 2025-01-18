@@ -3,10 +3,10 @@ session_start();
 
 $db = null;
 $simp_key = "";
-include "../../../private/connect.php";
-include "../../../private/book.php";
-include "../../../private/tag.php";
-include "../../../private/config.php";
+include "../../private/connect.php";
+include "../../private/book.php";
+include "../../private/tag.php";
+include "../../private/config.php";
 
 $id = null;
 $password = null;

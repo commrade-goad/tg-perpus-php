@@ -1,9 +1,9 @@
 <?php
 
 $db = null;
-include "../../../private/connect.php";
-include "../../../private/book.php";
-include "../../../private/tag.php";
+include "../../private/connect.php";
+include "../../private/book.php";
+include "../../private/tag.php";
 
 $count = 0;
 check_and_create($db);

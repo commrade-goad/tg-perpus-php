@@ -201,6 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const query = urlParams.get('query');
     const tag = urlParams.get('tag');
+    gquery = tag;
     
     if (query) {
         document.getElementById('searchInput').value = query;
@@ -250,6 +251,13 @@ ap_fil.addEventListener("click", () => {
     const booksContainer = document.getElementById('booksContainer');
     booksContainer.innerHTML = '';
 
+    if (gbook_data.length <= 0) {
+        if (isNaN(gquery)) {
+            do_search();
+        } else {
+            fetch_all_books();
+        }
+    }
     if (selectedProdi.length == 0 && selectedTags == 0) {
         render_book(gbook_data);
     }
