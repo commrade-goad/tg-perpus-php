@@ -1,16 +1,7 @@
 # tg-perpus-php
 Project for Teori Graf for Book library.
 
-## Run
+## USAGE 
 
-```sh
-./start.sh
-
-# or
-cd web/
-DB_PATH="/path/to/db.sqlite" ROOT_PASSWORD="user0password" php -S localhost:8081
-
-# or just use `private/config.php`
-cd web/
-php -S localhost:8081
-```
+__LOCALLY__ : use `./start.sh` .
+__SERVER__ : move the content of the `web` folder to the server dir.
