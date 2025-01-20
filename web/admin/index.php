@@ -46,7 +46,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
         <section class="grid grid-cols-1 md:grid-cols-4  gap-4 p-4">
         <div class="w-full bg-blue-400 rounded group">
     <a href="../admin/anggota.php">
-    <img src="/src/img1.jpg" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
+    <img src="https://cdn.icon-icons.com/icons2/907/PNG/512/group-of-people-in-a-formation_icon-icons.com_70476.png" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
     <div class="block relative w-full bg-sky-400 p-1">
         <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
             <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';"></p>
@@ -57,7 +57,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 </div>
 <div class="w-full bg-blue-400 rounded group">
     <a href="../admin/book.php">
-    <img src="/src/img3.jpg" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
+    <img src="/src/book-icon.png" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
     <div class="block relative w-full bg-sky-400 p-1">
         <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
             <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';"></p>
@@ -68,7 +68,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 </div>
 <div class="w-full bg-blue-400 rounded group">
     <a href="../admin/tag.php">
-    <img src="/src/img4.jpg" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
+    <img src="https://www.iconarchive.com/download/i113031/fa-team/fontawesome/FontAwesome-Tags.1024.png" alt="" class="w-full transition-all duration-300 group-hover:brightness-75">
     <div class="block relative w-full bg-sky-400 p-1">
         <div class="flex h-auto md:h-14 lg:h-24 flex-col justify-between p-2 bg-overlay relative">
             <p class="text-sm line-clamp-2 font-semibold leading-snug lg:leading-normal text-gray-50" style="font-family: 'Poppins';"></p>
