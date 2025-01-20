@@ -28,7 +28,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 <body class="min-h-screen flex flex-col bg-blue-600">
     <!-- <header class="bg-blue-600 p-6 text-2xl font-semibold text-gray-200 text-center">PERPUSTAKAAN UKDC</header> -->
     <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/admin'">
+        <div class="flex-1 text-white text-4xl text-center cursor-pointer" onclick="window.location.href='/admin'">
             PERPUSTAKAAN UKDC
         </div>
     </div>

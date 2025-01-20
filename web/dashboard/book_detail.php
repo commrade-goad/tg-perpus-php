@@ -10,7 +10,7 @@
 </head>
 <body class="min-h-screen flex flex-col bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/dashboard/index.php'">
+        <div class="flex-1 text-white text-4xl text-center cursor-pointer" onclick="window.location.href='/dashboard/index.php'">
             PERPUSTAKAAN UKDC
         </div>
     </div>

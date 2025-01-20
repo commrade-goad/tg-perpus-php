@@ -26,7 +26,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
 </head>
 <body class="min-h-screen flex flex-col font-poppins bg-blue-600">
     <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/admin'">
+        <div class="flex-1 text-white text-4xl text-center cursor-pointer" onclick="window.location.href='/admin'">
             PERPUSTAKAAN UKDC
         </div>
     </div>
@@ -60,8 +60,8 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                 <div class="flex justify-center align-center overflow-x-auto" id="tags-container">
                 </div>
                 <div class="flex justify-center items-center text-center">
-                    <span id="prev" class="text-white text-2xl font-poppins p-2 font-bold"><</span>
-                    <span id="next" class="text-white text-2xl font-poppins p-2 font-bold">></span>
+                    <span id="prev" class="cursor-pointer text-white text-2xl font-poppins p-2 font-bold"><</span>
+                    <span id="next" class="cursor-pointer text-white text-2xl font-poppins p-2 font-bold">></span>
                 </div>
         </div>
     </section>

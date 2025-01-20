@@ -32,7 +32,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     </head>
     <body class="min-h-screen flex flex-col bg-blue-600">
 <div class="bg-blue-800 font-bold font-['Poppins'] text-center p-5 border-b-4 flex items-center justify-between">
-        <div class="flex-1 text-white text-4xl text-center" onclick="window.location.href='/dashboard/index.php'">
+        <div class="flex-1 text-white text-4xl text-center cursor-pointer" onclick="window.location.href='/dashboard/index.php'">
             PERPUSTAKAAN UKDC
         </div>
     </div>
@@ -87,9 +87,9 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
             <!-- Untuk Tombol Panah -->
             <div class="flex justify-center items-center text-white text-xl mt-auto">
-                <span id="prev" class="p-3 text-2xl"><</span>
+                <span id="prev" class="p-3 text-2xl cursor-pointer"><</span>
                 <span id="curr" class="mx-5">1</span>
-                <span id="next" class="p-3 text-2xl">></span>
+                <span id="next" class="p-3 text-2xl cursor-pointer">></span>
             </div>
 
         </div>
