@@ -199,7 +199,7 @@ function do_search() {
 
 document.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
-    const query = urlParams.get('query');
+    const query = urlParams.get('search');
     const tag = urlParams.get('tag');
     gquery = tag;
     
