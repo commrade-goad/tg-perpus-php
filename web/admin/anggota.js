@@ -142,7 +142,7 @@ $("#edit-user-form").submit(function(event) {
                 // AJAX request to add user
                 $.ajax({
                     type: "POST",
-                    url: "/api/add_user/.index.php",
+                    url: "/api/add_user/index.php",
                     data: formData,
                     success: function(response) {
                         console.log(formData);
