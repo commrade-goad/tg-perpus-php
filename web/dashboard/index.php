@@ -76,7 +76,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 const timeoutduration = <? php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>; // durasi
 settimeout(async () => {
     try {
-        const response = await fetch('/api/auth_destroy', { method: 'post' });
+        const response = await fetch('/api/auth_destroy/index.php', { method: 'post' });
 
         alert("sesi anda telah habis. silakan masuk lagi.");
         window.location.href = '/login';

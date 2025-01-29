@@ -52,7 +52,7 @@
 
         setTimeout(async () => {
             try {
-                const response = await fetch('/api/auth_destroy', { method: 'POST' });
+                const response = await fetch('/api/auth_destroy/index.php', { method: 'POST' });
 
                 alert("Sesi Anda telah habis. Silakan masuk lagi.");
                 window.location.href = '/login';
@@ -66,7 +66,7 @@
         // Ini untuk API ambil data Buku menggunakan ID
         async function getData(id) {
             try {
-                const response = await fetch(`/api/get_book?id=${id}`);
+                const response = await fetch(`/api/get_book/index.php?id=${id}`);
 
                 const data = await response.json();
 

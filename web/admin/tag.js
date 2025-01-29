@@ -7,7 +7,7 @@ function gen_from() {
 }
 
 async function fetch_tags(from, range){
-    const a = await fetch(`/api/get_tag?from=${from}&range=${range}`).then(data => data.json());
+    const a = await fetch(`/api/get_tag/index.php?from=${from}&range=${range}`).then(data => data.json());
     all_tags = a;
     all_tags.forEach(element => {
         render_tag(element);
@@ -34,7 +34,7 @@ async function rem_tag(id) {
     const formData = new URLSearchParams();
     formData.append("id", id);
 
-    fetch(`/api/del_tag`, {
+    fetch(`/api/del_tag/index.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString()
@@ -54,7 +54,7 @@ async function add_tag(name, cover) {
     formData.append("name", name);
     formData.append("img", cover);
 
-    fetch(`/api/add_tag`, {
+    fetch(`/api/add_tag/index.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString()
@@ -74,7 +74,7 @@ async function edit_tag_real(id, name, cover) {
     formData.append("name", name);
     formData.append("img", cover);
 
-    fetch(`/api/edit_tag`, {
+    fetch(`/api/edit_tag/index.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: formData.toString()
@@ -89,7 +89,7 @@ async function edit_tag_real(id, name, cover) {
 }
 
 async function get_tag_count() {
-    const response = await fetch(`/api/get_tag_count`);
+    const response = await fetch(`/api/get_tag_count/index.php`);
     const data = await response.json();
     return data.count;
 }
@@ -100,7 +100,7 @@ async function edit_tag(id) {
     const imgp = document.getElementById("imgp-e");
     const tid = document.getElementById("tid");
 
-    const a = fetch(`/api/get_tag?id=${encodeURIComponent(id)}`)
+    const a = fetch(`/api/get_tag/index.php?id=${encodeURIComponent(id)}`)
     .then(res => res.json())
     .then(data => {
         name.value = data[0].name;
@@ -146,7 +146,7 @@ function handleSubmitEdit(event) {
 
 async function search_tag(query, from, range) {
     const len = await get_tag_count();
-    const a = await fetch(`/api/get_tag?from=0&range=${len}`);
+    const a = await fetch(`/api/get_tag/index.php?from=0&range=${len}`);
     const data = await a.json();
     // let rcounter = 0;
     // let fcounter = 0;

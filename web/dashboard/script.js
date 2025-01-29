@@ -13,7 +13,7 @@ function handleSearch() {
 // Ambil tag untuk display
 async function fetchTags(from, range) {
     try {
-        const response = await fetch(`/api/get_tag?from=${from}&range=${range}&sort=ASC`);
+        const response = await fetch(`/api/get_tag/index.php?from=${from}&range=${range}&sort=ASC`);
 
         if (!response.ok) {
             throw new Error("Failed to fetch tags");
@@ -60,7 +60,7 @@ async function fetchTags(from, range) {
         });
 
         nextButton.addEventListener('click', function () {
-            fetch(`/api/get_tag_count`)
+            fetch(`/api/get_tag_count/index.php`)
                 .then(response => response.json())
                 .then(data => {
                     if ((page + 1) * 4 < data.count) {

@@ -100,7 +100,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
         const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
         setTimeout(async () => {
             try {
-                const response = await fetch('/api/auth_destroy', { method: 'POST' });
+                const response = await fetch('/api/auth_destroy/index.php', { method: 'POST' });
 
                 if (!response.ok) {
                     throw new Error("Failed to destroy session");

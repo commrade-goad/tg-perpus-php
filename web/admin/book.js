@@ -33,7 +33,7 @@ function closeEditModal() {
 function loadBooks() {
     $.ajax({
         type: "GET",
-        url: "/api/get_book",
+        url: "/api/get_book/index.php",
         success: function(response) {
             $('#user-table-book tbody').empty();
             response.forEach(book => {
@@ -104,7 +104,7 @@ function filterBooks(query) {
     // Load tags
     $.ajax({
         type: "GET",
-        url: "/api/get_tag/",
+        url: "/api/get_tag/index.php",
         success: function(response) {
             displayTags(response);
             response.forEach(tag => {
@@ -181,7 +181,7 @@ function filterBooks(query) {
         // AJAX request to add book
         $.ajax({
             type: "POST", // Menggunakan GET sesuai dengan API
-            url: "/api/add_book/",
+            url: "/api/add_book/index.php",
             data: formData,
             success: function(response) {
                 console.log("Success response:", response);
@@ -204,7 +204,7 @@ function editBook(id) {
     // Mengambil data buku berdasarkan ID
     $.ajax({
         type: "GET",
-        url: `/api/get_book?id=${id}`, // URL API untuk mengambil data buku
+        url: `/api/get_book/index.php?id=${id}`, // URL API untuk mengambil data buku
         success: function(response) {
             // Mengisi data buku ke dalam form modal edit
             $('#edit_title').val(response.title);
@@ -223,7 +223,7 @@ function editBook(id) {
             // Memuat tag secara dinamis
             $.ajax({
                 type: "GET",
-                url: "/api/get_tag/",
+                url: "/api/get_tag/index.php",
                 success: function(tagResponse) {
                     tagResponse.forEach(tag => {
                         const tagButton = $(`<button type="button" class="tag-btn bg-blue-400 hover:bg-blue-600 text-white px-2 py-1 rounded m-1" data-id="${tag.id}">${tag.name}</button>`);
@@ -323,7 +323,7 @@ $("#edit_book").submit(function(event) {
     // AJAX request to update book
     $.ajax({
         type: "POST",
-        url: `/api/edit_book`,
+        url: `/api/edit_book/index.php`,
         data: formData,
         success: function(response) {
             loadBooks(); // Reload books
@@ -341,7 +341,7 @@ function deleteBook(id) {
     if (confirm("Apakah Anda yakin ingin menghapus buku ini?")) {
         $.ajax({
             type: "POST",
-            url: `/api/del_book`,
+            url: `/api/del_book/index.php`,
             data: formData,
             success: function(response) {
                 alert("Buku berhasil dihapus!");

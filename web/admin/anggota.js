@@ -31,7 +31,7 @@ function editUser(userId, tipe) {
     // Mengambil data pengguna dari server
     $.ajax({
         type: "GET",
-        url: `/api/get_user?id=${userId}`, // Ganti dengan endpoint yang benar untuk mendapatkan data pengguna
+        url: `/api/get_user/index.php?id=${userId}`, // Ganti dengan endpoint yang benar untuk mendapatkan data pengguna
         
         success: function(response) {
             // Isi form dengan data pengguna
@@ -59,7 +59,7 @@ $("#edit-user-form").submit(function(event) {
     // Mengirim data ke server untuk diperbarui
     $.ajax({
         type: "POST",  // Gunakan POST untuk update
-        url: `/api/edit_user/${currentUserId}`, // Ganti dengan endpoint yang benar untuk memperbarui data pengguna
+        url: `/api/edit_user/index.php${currentUserId}`, // Ganti dengan endpoint yang benar untuk memperbarui data pengguna
         data: formData,
         success: function(response) {
             if (response.success) {
@@ -85,7 +85,7 @@ $("#edit-user-form").submit(function(event) {
             
             $.ajax({
                     type: "GET",
-                    url: "/api/get_user/",
+                    url: "/api/get_user/index.php",
                     success: function(response) {
                         // addUserToTable(formData);
                         // closeModal();
@@ -142,7 +142,7 @@ $("#edit-user-form").submit(function(event) {
                 // AJAX request to add user
                 $.ajax({
                     type: "POST",
-                    url: "/api/add_user/",
+                    url: "/api/add_user/.index.php",
                     data: formData,
                     success: function(response) {
                         console.log(formData);
@@ -176,7 +176,7 @@ function deleteUser(userId) {
     if (confirm("Apakah Anda yakin ingin menghapus pengguna ini?")) {
         $.ajax({
             type: "POST", // Menggunakan POST jika DELETE tidak diizinkan
-            url: `/api/del_user`, // Endpoint penghapusan user
+            url: `/api/del_user/index.php`, // Endpoint penghapusan user
             data: { id: userId }, // Kirim data ID user
             success: function(response) {
                 if (response.success) { // Pastikan respons API menunjukkan keberhasilan

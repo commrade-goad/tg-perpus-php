@@ -9,7 +9,7 @@ $books = array();
 $id = null;
 $sort = "ASC";
 $from = 0;
-$range = 50;
+$range = 10000;
 check_and_create($db);
 header('Content-Type: application/json');
 

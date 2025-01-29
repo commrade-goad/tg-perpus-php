@@ -56,7 +56,7 @@ function updateSelectedTags(checkbox) {
 // Fungsi untuk mendapatkan data Tag
 async function fetchTags() {
     try {
-        const response = await fetch('/api/get_tag/');
+        const response = await fetch('/api/get_tag/index.php');
         const tags = await response.json();
         const dropdownTagMenu = document.getElementById('dropdownTagMenu');
         dropdownTagMenu.innerHTML = ''; // Kosongkan konten sebelumnya
@@ -78,7 +78,7 @@ async function fetchTags() {
 
 async function fetchProdi() {
     try {
-        const response = await fetch('/api/get_prodi');
+        const response = await fetch('/api/get_prodi/index.php');
         const prodis = await response.json();
         const dropdownProdiMenu = document.getElementById('dropdownProdiMenu');
         dropdownProdiMenu.innerHTML = '';
@@ -148,11 +148,11 @@ function render_current_page() {
 // Fetch all books and store in global variable
 async function fetch_all_books() {
     try {
-        const response = await fetch(`/api/get_book_count`);
+        const response = await fetch(`/api/get_book_count/index.php`);
         const book_count = await response.json();
         max_page = book_count.count;
 
-        const all_books_response = await fetch(`/api/get_book`);
+        const all_books_response = await fetch(`/api/get_book/index.php`);
         full_book_data = await all_books_response.json();
 
         gbook_data = full_book_data; // Initially set global data to all books
@@ -165,7 +165,7 @@ async function fetch_all_books() {
 // Fetch all books from a tag and store in global variable
 async function fetch_all_books_from_tag(tag) {
     try {
-        const response = await fetch(`/api/get_book_from_tag?id=${encodeURIComponent(tag)}`);
+        const response = await fetch(`/api/get_book_from_tag/index.php?id=${encodeURIComponent(tag)}`);
         full_book_data = await response.json();
         gbook_data = full_book_data; // Set global data to books from tag
         max_page = gbook_data.length;
@@ -179,7 +179,7 @@ async function fetch_all_books_from_tag(tag) {
 async function fetch_all_search_results(query) {
     gquery = query;
     try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(gquery)}`);
+        const response = await fetch(`/api/search/index.php?q=${encodeURIComponent(gquery)}`);
         full_book_data = await response.json();
         gbook_data = full_book_data.map(item => item.book); // Extract books from search results
         max_page = gbook_data.length;
