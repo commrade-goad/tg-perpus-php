@@ -23,7 +23,7 @@
 
     <div class="bg-blue-600 p-4 pl-12 flex mb-8 book-container">
         <!--<img id="book-cover" src="/src/cover.jpg" alt="Cover" class="max-w-[350px] aspect-[3/4]">-->
-        <img id="book-cover" src="/src/cover.jpg" alt="Cover" crossorigin="anonymous">
+        <img id="book-cover" src="/src/cover.jpg" alt="Cover">
         <div class="p-3 text-3xl text-white">
             <div class="p-3 pb-0 font-bold text-3xl" id="title">Title :</div>
             <div class="p-3 font-bold text-2xl pb-0 italic" id="author">Author :</div>
@@ -84,9 +84,8 @@
                 for (let i = 0; i < data.tags.length; i++) {
                     const cur_tag = data.tags[i];
                 tg.innerHTML += `
-                <div onclick="teleport('${cur_tag.name}')" class="tag-btn bg-blue-400 hover:bg-blue-700 text-white p-2 pt-1 pb-1 rounded item-center text-center" data-id="${cur_tag.id}">${cur_tag.name}</div>
+                <div onclick="teleport('${cur_tag.id}')" class="tag-btn bg-blue-400 hover:bg-blue-700 text-white p-2 pt-1 pb-1 rounded item-center text-center" data-id="${cur_tag.id}">${cur_tag.name}</div>
                 `;
-                console.log(data.tags[i].name);
                 }           
                 document.getElementById('desc').textContent = data.desc;
 
