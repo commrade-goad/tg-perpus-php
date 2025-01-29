@@ -2,8 +2,8 @@ const state = {
     page: 0,
     itemsPerPage: 6,
     maxPage: 0,
-    originalData: [], // Stores the complete dataset from initial fetch
-    filteredData: [], // Stores filtered/sorted data
+    originalData: [],
+    filteredData: [],
     selectedProdi: [],
     selectedTags: [],
     searchQuery: ''

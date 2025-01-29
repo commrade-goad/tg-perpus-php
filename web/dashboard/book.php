@@ -45,7 +45,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
 
 <!-- Centered Search and Filter Section -->
 <div class="bg-blue-600 flex flex-col items-center p-3">
-        <input type="text" id="searchInput" class="bg-blue-400 text-white w-1/2 p-2 text-xl rounded-xl 
+        <input type="text" id="searchInput" class="bg-blue-400 text-white w-1/2 p-2 text-xl rounded-xl
             border-white border-2 focus:border-blue-600 focus:outline-none mb-3" placeholder="Telusuri">
 
         <div class="flex space-x-4 mb-5">
@@ -58,7 +58,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 </div>
 
                 <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownProdiMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownProdiButton" tabindex="-1" style="display: none; font-size: 8pt">
-                    
+
                 </div>
             </div>
 
@@ -71,7 +71,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 </div>
 
                 <div class="absolute inset-x-0 top-full z-[100] -m-px rounded shadow-sm bg-[#2d2e32] text-white mt-1 pb-2.5" id="dropdownTagMenu" role="menu" aria-orientation="vertical" aria-labelledby="dropdownTagButton" tabindex="-1" style="display: none; font-size: 8pt">
-                    
+
                 </div>
             </div>
                 <button type="button" class="inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-blue-500 text-sm font-medium text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" id="apply-filter" aria-haspopup="true" aria-expanded="true">
@@ -79,11 +79,11 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 </button>
         </div>
     </div>
-
-        <div class="bg-blue-600 justify-center">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 p-4" id="booksContainer">
-                <!-- Buku akan ditampilkan di sini -->
-            </div>
+                <div class="bg-blue-600 justify-center flex">
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4 mx-auto" id="booksContainer" style="max-width: 900px;">
+                        <!-- Buku akan ditampilkan di sini -->
+                    </div>
+                </div>
 
             <!-- Untuk Tombol Panah -->
             <div class="flex justify-center items-center text-white text-xl mt-auto">
@@ -100,7 +100,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
         const timeoutDuration = <?php echo isset($timeout_duration) ? $timeout_duration : 6000; ?>;
         setTimeout(async () => {
             try {
-                const response = await fetch('/api/auth_destroy/index.php', { method: 'POST' });
+                const response = await fetch('/api/auth_destroy', { method: 'POST' });
 
                 if (!response.ok) {
                     throw new Error("Failed to destroy session");
