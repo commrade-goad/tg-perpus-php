@@ -8,6 +8,10 @@ if (isset($_SESSION["id"])) {
     $success_id = true;
 }
 
+if (isset($_SESSION['name'])) {
+    unset($_SESSION['name']);
+}
+
 $success_role = false;
 if (isset($_SESSION["role"])) {
     unset($_SESSION['role']);
@@ -19,3 +23,5 @@ if ($success_id && $success_role) {
 } else {
     echo json_encode(["success" => -1]);
 }
+
+session_destroy();

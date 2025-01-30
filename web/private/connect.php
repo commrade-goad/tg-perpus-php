@@ -93,6 +93,7 @@ function create_table_user(SQLite3 &$db) {
     $statement = 
         "CREATE TABLE user(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT,
         password TEXT,
         type INTEGER
         )";

@@ -48,7 +48,7 @@ $_SESSION['LAST_ACTIVITY'] = time();
     <div class="bg-blue-600 flex flex-col items-center justify-center text-center">
         <div class="bg-blue-500 rounded-xl shadow-lg p-8 mt-8 min-w-[35%]">
             <div class="text-gray-50 text-2xl p-3">
-                <h1 class="text-2xl font-semibold font-['Poppins']">Welcome, <?php echo htmlspecialchars($_SESSION['id']); ?>!</h1>
+                <h1 class="text-2xl font-semibold font-['Poppins']">Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?>!</h1>
             </div>
             <h1 class="pb-5 text-4xl font-semibold font-['Poppins'] text-gray-50">Mau cari buku apa? </h1>
             <form action="/dashboard/book.php" method="GET" class="flex justify-center w-full items-center" onsubmit="return handleSearch()">

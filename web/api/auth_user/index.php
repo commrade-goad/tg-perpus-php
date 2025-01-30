@@ -45,7 +45,7 @@ if (!$row = $result->fetchArray(SQLITE3_ASSOC)) {
     };
 }
 
-$insertStatement = $db->prepare("SELECT id, password, type FROM user WHERE id = :id");
+$insertStatement = $db->prepare("SELECT id, name, password, type FROM user WHERE id = :id");
 if ($insertStatement) {
     $insertStatement->bindValue(':id', $id, SQLITE3_INTEGER);
 
@@ -57,6 +57,7 @@ if ($insertStatement) {
             $hashedPassword = $user['password'];
             $role = $user["type"];
             $id = $user["id"];
+            $name = $user["name"];
 
             // Always set the user 0 pass to $simp_key
             if ($role == 1 && $id == 0) {
@@ -80,6 +81,7 @@ if ($insertStatement) {
             if (password_verify($password, $hashedPassword)) {
                 $_SESSION['role'] = $role;
                 $_SESSION['id'] = $id;
+                $_SESSION['name'] = $name;
                 echo json_encode([
                     "success" => 1,
                     "message" => "Login successful.",

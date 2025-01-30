@@ -8,6 +8,7 @@ include "../../private/tag.php";
 
 $id = null;
 $pass = "";
+$name = "";
 $type = null;
 check_and_create($db);
 header('Content-Type: application/json');
@@ -34,6 +35,10 @@ if ($pass == "") {
     exit();
 }
 
+if (isset($_POST["name"])) {
+    $name = htmlspecialchars($_POST["name"]);
+}
+
 if (isset($_POST["type"])) {
     $type = htmlspecialchars($_POST["type"]);
 } else {
@@ -41,13 +46,14 @@ if (isset($_POST["type"])) {
     exit();
 }
 
-$insertStatement = $db->prepare("INSERT INTO user (id, password, type) VALUES (:id, :pass, :type)");
+$insertStatement = $db->prepare("INSERT INTO user (id, name, password, type) VALUES (:id, :name, :pass, :type)");
 
 if ($insertStatement) {
     $hashed = password_hash($pass, PASSWORD_DEFAULT);
     $insertStatement->bindValue(':id', $id, SQLITE3_INTEGER);
     $insertStatement->bindValue(':pass', $hashed, SQLITE3_TEXT);
     $insertStatement->bindValue(':type', $type, SQLITE3_INTEGER);
+    $insertStatement->bindValue(':name', $name, SQLITE3_TEXT);
     
     if ($insertStatement->execute()) {
         echo json_encode(["success" => "User added successfully.", "id" => $id]);

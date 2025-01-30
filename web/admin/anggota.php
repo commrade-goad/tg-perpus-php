@@ -1,4 +1,5 @@
-<?php session_start();
+<?php
+session_start();
 
 $timeout_duration = 6000;
 
@@ -62,6 +63,7 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <thead>
                         <tr class="bg-blue-700 text-gray-50">
                             <th class="px-4 py-2 text-left">Npm</th>
+                            <th class="px-4 py-2 text-left">Nama</th>
                             <th class="px-4 py-2 text-left">Type</th>
                             <th class="px-4 py-2 text-left">Aksi</th>
                         </tr>
@@ -91,6 +93,10 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                         <input type="text" name="id" id="id" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="NPM" required>
                     </div>
                     <div class="mb-4">
+                        <label for="name" class="text-gray-700">Nama</label>
+                        <input type="name" name="name" id="name" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Nama" required>
+                    </div>
+                    <div class="mb-4">
                         <label for="password" class="text-gray-700">Password</label>
                         <input type="password" name="password" id="password" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Password" required>
                     </div>
@@ -117,8 +123,12 @@ if (isset($_SESSION['role']) && $_SESSION["role"] != 1){
                     <input type="text" name="npm" id="npm" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="NPM" disabled>
                 </div>
                 <div class="mb-4">
+                    <label for="name" class="text-gray-700">Nama</label>
+                    <input type="name" name="name" id="name-new" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Nama" required>
+                </div>
+                <div class="mb-4">
                         <label for="password" class="text-gray-700">Password</label>
-                        <input type="password" name="password" id="password-new" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Password" required>
+                        <input type="password" name="password" id="password-new" class="border-2 border-gray-300 p-2 rounded w-full" placeholder="Password">
                     </div>
                 <div class="mb-4">
                     <label for="type" class="text-gray-700">Tipe</label>

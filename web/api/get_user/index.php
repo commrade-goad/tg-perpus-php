@@ -18,11 +18,15 @@ if (!isset($_SESSION["id"]) || !isset($_SESSION["role"]) || $_SESSION["role"] !=
     exit();
 }
 
-$statement = "select id, type from user order by id " . $sort . " limit " . $range . " offset " . $from;
+$statement = "select id, name, type from user order by id " . $sort . " limit " . $range . " offset " . $from;
 $result = $db->query($statement);
 while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+    if ($row["name"] == null) {
+        $row["name"] = "";
+    }
     $tmp = new User (
         $row["id"],
+        $row["name"],
         "",
         $row["type"],
     );
