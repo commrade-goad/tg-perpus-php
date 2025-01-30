@@ -6,7 +6,8 @@ const state = {
     filteredData: [],
     selectedProdi: [],
     selectedTags: [],
-    searchQuery: ''
+    searchQuery: '',
+    useTag: false,
 };
 
 const DOM = {
@@ -158,6 +159,7 @@ const DataManager = {
             await this.fetchSearchResults(searchQuery);
         } else if (tagQuery) {
             await this.fetchBooksByTag(tagQuery);
+            state.useTag = true;
         } else {
             await this.fetchAllBooks();
         }
@@ -216,7 +218,12 @@ const DataManager = {
         DOM.pagination.next.disabled = state.page >= state.maxPage - 1;
     },
 
-    applyFilters() {
+    async applyFilters() {
+        if (state.useTag) {
+            await DataManager.fetchAllBooks();
+            state.useTag = false;
+            this.applyFilters();
+        }
         if (state.selectedProdi.length === 0 && state.selectedTags.length === 0) {
             state.filteredData = [...state.originalData];
             this.renderCurrentPage();
