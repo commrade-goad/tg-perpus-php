@@ -79,10 +79,11 @@ $_SESSION['LAST_ACTIVITY'] = time();
                 </button>
         </div>
     </div>
-                <div class="bg-blue-600 justify-center flex">
+                <div class="bg-blue-600 justify-center flex" style="flex-direction: column">
                     <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4 mx-auto" id="booksContainer" style="max-width: 900px;">
                         <!-- Buku akan ditampilkan di sini -->
                     </div>
+                    <div id="no-book" class="text-center text-white text-xl"></div>
                 </div>
 
             <!-- Untuk Tombol Panah -->

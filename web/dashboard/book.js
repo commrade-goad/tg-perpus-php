@@ -13,6 +13,7 @@ const state = {
 const DOM = {
     booksContainer: document.getElementById('booksContainer'),
     searchInput: document.getElementById('searchInput'),
+    noBook: document.getElementById('no-book'),
     dropdownProdiButton: document.getElementById('dropdownProdiButton'),
     dropdownProdiMenu: document.getElementById('dropdownProdiMenu'),
     dropdownTagButton: document.getElementById('dropdownTagButton'),
@@ -172,6 +173,7 @@ const DataManager = {
             const response = await fetch('/api/get_book/index.php');
             state.originalData = await response.json();
             state.filteredData = [...state.originalData];
+            DOM.noBook.innerHTML = "";
             this.renderCurrentPage();
         } catch (error) {
             console.error('Error fetching books:', error);
@@ -183,6 +185,10 @@ const DataManager = {
             const response = await fetch(`/api/get_book_from_tag/index.php?id=${encodeURIComponent(tag)}`);
             state.originalData = await response.json();
             state.filteredData = [...state.originalData];
+            DOM.noBook.innerHTML = "";
+            if (state.filteredData.length <= 0) {
+                DOM.noBook.innerHTML = `Buku yang kamu cari tidak ada.`;
+            }
             this.renderCurrentPage();
         } catch (error) {
             console.error('Error fetching books by tag:', error);
@@ -195,6 +201,10 @@ const DataManager = {
             const results = await response.json();
             state.originalData = results.map(item => item.book);
             state.filteredData = [...state.originalData];
+            DOM.noBook.innerHTML = "";
+            if (state.filteredData.length <= 0) {
+                DOM.noBook.innerHTML = `Buku yang kamu cari tidak ada.`;
+            }
             this.renderCurrentPage();
         } catch (error) {
             console.error('Error fetching search results:', error);
@@ -219,6 +229,7 @@ const DataManager = {
     },
 
     async applyFilters() {
+        DOM.noBook.innerHTML = "";
         if (state.useTag) {
             await DataManager.fetchAllBooks();
             state.useTag = false;
@@ -258,6 +269,10 @@ const DataManager = {
             }
         }
         state.page = 0;
+        if (state.filteredData.length <= 0) {
+                DOM.noBook.innerHTML = `Buku yang kamu cari tidak ada.`;
+                console.log(state.filteredData);
+        }
         this.renderCurrentPage();
     }
 };

@@ -8,7 +8,7 @@ include "../../private/tag.php";
 $books = [];
 $sort = "ASC";
 $from = 0;
-$range = 50;
+$range = 10000;
 $query = "";
 check_and_create($db);
 header('Content-Type: application/json');
@@ -77,6 +77,7 @@ function vectorizeBook(array $documents): array {
         foreach ($doc->tags as $tag) {
             $wordCount[strtolower($tag->name)] = ($wordCount[strtolower($tag->name)] ?? 0) + 1.0;
         }
+        $wordCount[strtolower($doc->prodi)] = ($wordCount[strtolower($doc->prodi)] ?? 0) + 1.0;
         $wordCount[(string)$doc->year] = ($wordCount[(string)$doc->year] ?? 0) + 1.0;
 
         $allWordCount[] = $wordCount;
